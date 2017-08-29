@@ -10,8 +10,8 @@ int main() {
     cout << "Enter month, day and year separated by spaces: ";
     cin >> m >> d >> y;
 
-    // call setDate
-    // call printDate
+    d1.setDate(m, d, y);
+    d1.printDate();
 
     return 0;
 }
