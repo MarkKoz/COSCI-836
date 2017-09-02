@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>CSIT 836 Assignment #2</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="Microsoft FrontPage 12.0" name=GENERATOR>
+<base target="_blank">
+<style type="text/css">
+.style7 {
+	text-decoration: underline;
+}
+</style>
+</HEAD>
+<BODY><BR>
+<TABLE 
+style="BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; BORDER-COLLAPSE: collapse; mso-border-alt: solid #CCCCCC .5pt; mso-padding-alt: 0in 5.4pt 0in 5.4pt" 
+cellSpacing=0 cellPadding=0 width="100%" border=1>
+  <TBODY>
+  <TR style="HEIGHT: 17.5pt">
+    <TD 
+    style="BORDER-RIGHT: #cccccc 0.75pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: #cccccc 0.5pt solid; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: #cccccc 0.5pt solid; PADDING-TOP: 0in; BORDER-BOTTOM: #cccccc 0.5pt solid; HEIGHT: 17.5pt" 
+    vAlign=top width="43%">
+      <P class=MsoHeader style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px">CSIT 836</P>
+		<P class=MsoHeader style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px">Introduction to Data 
+      Structures</P></TD>
+    <TD 
+    style="BORDER-RIGHT: #cccccc 0.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: #cccccc 0.5pt solid; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; PADDING-TOP: 0in; BORDER-BOTTOM: #cccccc 0.5pt solid; HEIGHT: 17.5pt; mso-border-left-alt: solid #CCCCCC .75pt" 
+    vAlign=top width="56%">
+      <P class=MsoHeader 
+      style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; TEXT-ALIGN: right" 
+      align=right>Instructor: Jeff Kent</P>
+      <P class=MsoHeader 
+      style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; TEXT-ALIGN: right" 
+      align=right>Assignment #2 (Due Date on Website)</P>
+      </TD></TR></TBODY></TABLE>
+<P><u><b>Introduction</b></u></P>
+<P>As you know from the first assignment, at ancient Val E 
+Community College, an evil computer science instructor named Genghis Khent 
+delighted in tormenting his Data Structures students with apparently unsolvable 
+questions on data structures. Being a community college instructor, he also was 
+always looking for more ways to make money, especially since he had a free 
+source of programming labor, his Data Structures students.</P>
+<P>Genghis Khent thought he could make money with a new programming language, 
+G++ (the G being for Genghis of course). He told his hapless Data Structures 
+students to write a G++ compiler. The student's reward for success was an "A" on the assignment. However, the price of failure was high, a 
+mandatory "all you can eat" lunch at the Val E College Cafeteria. Few survived, 
+and those who did wished they hadn't.</P>
+<P>According to legend, a direct descendant of Genghis Khent teaches at this 
+college and intends to continue in the footsteps of his ancestor. You do not 
+know the identity of this descendant because the  descendant  has cleverly 
+changed his  last name just enough to hide his ancestry, but soon (like now) you 
+will have to write the same program.&nbsp;</P>
+<P>
+<span style="font-family:&quot;Times New Roman&quot;;letter-spacing:-.15pt; font-weight:700; text-decoration:underline">
+The G++ Programming Language</span></P>
+<p class="Style0">
+<span style="font-family:&quot;Times New Roman&quot;;letter-spacing:-.15pt">Your 
+program will test if an expression entered by the application user is valid under the G++ programming language. 
+Therefore, you need to know a little bit about </span>
+<span style="font-family: Times New Roman; letter-spacing: -.15pt">the G++ 
+programming language (which of course doesn't really exist, not yet anyway).</span></p>
+<p class="Style0">
+<span style="font-family:&quot;Times New Roman&quot;;letter-spacing:-.15pt">The 
+G++ programming language uses only 6 characters, </span>
+<span style="font-family: Times New Roman; color: black">left and right 
+brackets, parentheses and curly braces: </span><span style="font-family: Times New Roman"> <b>
+<font size="4">{ [ (</font></b><font size="4"> </font> <b><font size="4">} ] )</font></b></span><span style="font-family: Times New Roman; color: black">. 
+A left curly brace, bracket or parentheses is referred to as a left character. A 
+right curly brace, bracket or parentheses is referred to as a right character. </span></p>
+<p class="Style0">
+<span style="font-family: Times New Roman; color: black">A G++ expression is valid if each 
+left 
+character in the expression &quot;matches&quot; with a corresponding right character in the 
+expression. </span><span style="font-family: Times New Roman">The test for a 
+match requires going left to right through an expression, character by 
+character. When a right character is encountered, then it is compared to the rightmost left character that was not previously 
+compared to a right character. If the characters match, such as <b>
+<font size="4">{</font></b> and <b><font size="4">}</font></b>, <b>
+<font size="4">[</font></b> and <b><font size="4">]</font></b>, or <b>
+<font size="4">(</font></b> and <b><font size="4">)</font></b>, then you 
+continue through the expression, comparing each right character to the rightmost 
+left character that was not previously compared to a right character, until 
+either the left and right characters don't match (which means the expression is 
+not valid) or there are no more right characters. When there are no more right 
+characters, if all of the left characters have previously been compared to a 
+right character, the expression is valid. However, if there still are left 
+characters that have not previously been compared to a right character, the 
+expression is invalid.</span></p>
+<p class="Style0"><span style="font-family: Times New Roman">Let's look at some 
+examples. The following expressions are valid:</span></p>
+<p class="Style0">
+<span style="font-size: 14.0pt; font-family: Times New Roman; color: black"><b>
+[]{}()</b></span></p>
+<p class="Style0">
+<span style="font-size:14.0pt;font-family:&quot;Times New Roman&quot;;color:black">
+<b>{([])}</b></span></p>
+<p class="Style0"><b>
+<span style="font-size:14.0pt;font-family:
+&quot;Times New Roman&quot;;color:black">()[{}]</span></b><span style="font-family: Times New Roman; color: black">
+</span></p>
+<p class="Style0"><b>
+<span style="font-size:14.0pt;font-family:
+&quot;Times New Roman&quot;;color:black">[{}()]</span></b></p>
+<p class="Style0"><span style="font-family: Times New Roman; color: black">Note 
+that the matching may be by the right character immediately following the left 
+character, by nesting, or by a combination of the two.</span></p>
+<p class="Style0"><span style="font-family: Times New Roman; color: black">
+However,&nbsp; the expression </span><b>
+<span style="font-size:14.0pt;font-family:
+&quot;Times New Roman&quot;;color:black">[({}</span><span style="font-size: 14.0pt; font-family: Times New Roman; color: black">)</span><span style="font-size:14.0pt;font-family:
+&quot;Times New Roman&quot;;color:black">)</span></b><span style="font-family:&quot;Times New Roman&quot;;
+color:black"> is not valid as <b><span style="font-size: 14pt">[</span></b></span><span style="font-family:&quot;Times New Roman&quot;;color:black"> 
+does not correspond to </span><b>
+<span style="font-size:14.0pt;font-family:
+&quot;Times New Roman&quot;;color:black">)</span></b><span style="font-family:&quot;Times New Roman&quot;;
+color:black">. </span><span style="font-family: Times New Roman; color: black">
+Additionally, the expression </span><b>
+<span style="font-size:14.0pt;font-family:
+&quot;Times New Roman&quot;;color:black">([{}()]</span></b><span style="font-family:&quot;Times New Roman&quot;;
+color:black"> is not valid.</span><span style="font-family: Times New Roman; color: black"> 
+Even though each right character is matched by a left character, the first left 
+character is left over after you have run out of right characters.</span></p>
+<p class="Style0"><u><b>Program Description</b></u></p>
+<p class="Style0"><font face="Times New Roman">Your program, which will be 
+written in C++, not G++, will prompt the user to enter a string of not more than 
+20 characters. </font>You may use a character array, a C-string or the C++ 
+string class; the choice is up to you. <font face="Times New Roman"> You can assume the user enters no more than 
+20 characters (though the user may enter less than 20 characters) and 
+ 
+the characters entered are limited to l</font><span style="font-family: Times New Roman; color: black">eft 
+and right brackets, parentheses and curly braces; you do <u>not</u> need to do any 
+error-checking on this. After the user ends input, by the Enter key, the program 
+checks if the string is a valid G++ expression, and reports that it either is or 
+isn't. Sample outputs:</span></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: -.5in; margin-left: .5in; margin-top: 0; margin-bottom: 0">
+<span style="font-size: 12.0pt; color: black">Enter an expression: []{}()</span></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: -.5in; margin-left: .5in; margin-top: 0; margin-bottom: 0">
+<span style="font-size: 12.0pt; color: black">It's a valid expression</span></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: -.5in; margin-left: .5in; margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p class="MsoNormal" style="text-align: justify; text-indent: -.5in; margin-left: .5in; margin-top: 0; margin-bottom: 0">
+<span style="font-size: 12.0pt; color: black">Enter an expression: ()[{}]</span></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: -.5in; margin-left: .5in; margin-top: 0; margin-bottom: 0">
+<span style="font-size: 12.0pt; color: black">It's a valid expression</span></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: -.5in; margin-left: .5in; margin-top: 0; margin-bottom: 0">
+<span style="font-size: 12.0pt; color: black">&nbsp;</span></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: -.5in; margin-left: .5in; margin-top: 0; margin-bottom: 0">
+<span style="font-size: 12.0pt; color: black">Enter an expression: [({)}]</span></p>
+<p class="MsoNormal" style="text-align: justify; text-indent: -.5in; margin-left: .5in; margin-top: 0; margin-bottom: 0">
+<span style="font-size: 12.0pt; color: black">It's NOT a valid expression</span></p>
+<p class="Style0"><u><b>Stack Class</b></u></p>
+<P><a href="../handouts/stack.html">Module #3</a>, which accompanies this assignment, explains a
+<a href="../handouts/stack.html#Stack">stack</a> and how it will be represented by a
+<a href="../handouts/stack.html#Classes">class</a> 
+having the <a href="../handouts/stack.html#Variables">member 
+variables</a> and <a href="../handouts/stack.html#Functions">member 
+functions</a> (including a 
+<a href="../handouts/stack.html#Constructor">constructor</a>) 
+appropriate for a stack.</P>
+<P>
+<u><b>Multiple Files</b></u></P>
+<P>The class will be written using
+<a href="../handouts/stack.html#Header+CPP">header 
+and implementation files</a>.&nbsp; Your program also will include a
+<a href="../handouts/stack.html#Driver">driver file</a>, so your
+<a href="../handouts/stack.html#Projects">multi-file 
+project</a> will have three files:</P>
+<TABLE width="100%" border=1>
+  <TBODY>
+  <TR>
+    <TD width="50%" bgColor=#c0c0c0><B>File Name</B></TD>
+    <TD width="50%" bgColor=#c0c0c0><B>Purpose</B></TD></TR>
+  <TR>
+    <TD width="50%">cstack.h</TD>
+    <TD width="50%">Header file for stack</TD></TR>
+  <TR>
+    <TD width="50%">cstack.cpp</TD>
+    <TD width="50%">Implementation file for stack</TD></TR>
+  <TR>
+    <TD width="50%">test.cpp</TD>
+    <TD width="50%">Driver file</TD></TR></TBODY></TABLE>
+<P style="MARGIN-LEFT: 0in"><a href="../handouts/stack.html">Module #3</a> gives you the <i>test.cpp</i> file and all the information necessary to 
+write the <i>cstack.h </i>file. Your job is to write the <i>cstack.cpp</i> file. 
+All class members (variables and functions) must be <i>private</i> unless they 
+need to be <i>public</i>.</P>
+<p style="margin-top: 0; margin-bottom: 0"><u><b>What You Turn In</b></u></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Turn in to CANVAS a <i>zip</i> file of <i>cstack.h</i>,<i> cstack.cpp</i> and
+<i>test.cpp</i>. I do <span class="style7"><strong>not</strong></span> need or want the other files that Visual C++ generates<font face="Times New Roman">—just 
+the code you wrote—as I can just include your files in a project I create. You 
+also may include in your <i>zip</i> file a <i>pleaformercy.txt</i> file with any 
+comments or message you want to give to me.</font></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0"><u><b><font face="Times New Roman">
+Need Help?</font></b></u></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0"><font face="Times New Roman">You bet 
+you do! You're a student of Genghis Khent—err, Jeff Kent. Forget you heard that.</font></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0"><font face="Times New Roman">You'll 
+find under <i>Modules</i> on the class' CANVAS website Module #3 (<a target="_blank" href="../handouts/stack.html">Stack</a>). 
+Please also review Section 5.1 of the textbook</font>.</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0"><font face="Times New Roman">You also 
+can post in the <i>Discussion Forum</i> on on the class' CANVAS website. Remember, </font><span class="genmed">you can post a few lines of code 
+to provide context to your question, but please don't post all your code.</span></p>
+</BODY></HTML>
