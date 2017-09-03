@@ -43,7 +43,7 @@ All class members must be `private` unless they need to be `public`.
 | `void setDate(int, int, int)` | Assigns the value of each parameter to the month, date and year member variables respectively unless the date is not valid (see next section). |
 | `void printDate()`            | Outputs the date in the format `m/d/yyy`, such as `9/2/2008`.                                                                               |
 
-### Entry Point Function
+### Test.cpp
 Do not modify the code except for replacing the comments with their respective method calls.
 
 ```cpp
@@ -74,4 +74,4 @@ Date.h
 Test.cpp
 ```
 
-Original instructions can be found [here](https://www.genghiskhent.com/jak/836/assignments/836a1.html) or in `README.html`.
+Original instructions can be found [here](https://www.genghiskhent.com/jak/836/assignments/836a1.html) or in `/docs`.
