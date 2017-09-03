@@ -7,9 +7,9 @@
 
 ### Tasks
 Prompt the user to input a string of 20 characters at most. No input validation
-is required. Validate the string to be a valid expression, pushing one valid
-character at a time onto a `CStack`. Once the whole expression is checked,
-notify the user of the validity of the expression.
+is required. Validate the string to be a valid expression with the use of a
+`CStack`. Once the whole expression is checked, notify the user of the validity
+of the expression.
 
 An expression is valid if:
 * Characters only consist of `[`, `]`, `(`, `)`, `{`, and `}`.
