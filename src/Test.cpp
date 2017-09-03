@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <cstdlib>
-#include <cstring>
 #include <iostream>
+#include <string>
 #include <unordered_set>
 
 #include "Stack.hpp"
@@ -22,7 +22,7 @@
  * @param   exp     The expression to validate.
  * @return          @c true if valid; @c false otherwise.
  */
-bool isValid(Stack& stack, const std::string exp);
+bool isValid(Stack& stack, const std::string& exp);
 
 /**
  * @brief Program's entry point.
@@ -41,7 +41,7 @@ int main() {
                         : std::cout << "\nIt's NOT a valid expression.";
 }
 
-bool isValid(Stack& stack, const std::string exp) {
+bool isValid(Stack& stack, const std::string& exp) {
     const std::unordered_set<char> left = {'(', '[', '{'};
     const std::unordered_set<char> right = {')', ']', '}'};
 

@@ -52,7 +52,7 @@ All class members must be `private` unless they need to be `public`.
 | `bool isEmpty()`        | Returns `true` if the stack is empty i.e. no element in the array holds a value; returns `false` otherwise.   |
 | `bool isFull()`         | Returns `true` if the stack is full i.e. every element in the array holds a value; returns `false` otherwise. |
 
-### Entry Point Function
+### Test.cpp
 ```cpp
 #include <cstring>
 #include <iostream>
@@ -93,4 +93,4 @@ CStack.h
 Test.cpp
 ```
 
-Original instructions can be found [here](https://www.genghiskhent.com/jak/836/assignments/836a2.html) or in `README.html` and `README2.html`.
+Original instructions can be found [here](https://www.genghiskhent.com/jak/836/assignments/836a2.html) or `/docs`.
