@@ -5,7 +5,7 @@ class Stack {
 public:
     Stack();
 
-    void push(char c);
+    void push(const char c);
 
     void pop();
 

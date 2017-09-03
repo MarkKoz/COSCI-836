@@ -49,8 +49,8 @@ All class members must be `private` unless they need to be `public`.
 | `void push(const char)` | Adds a character to the top of the stack                                                                      |
 | `void pop()`            | Removes the top-most item from the stack.                                                                     |
 | `char top()`            | Returns the value of `topVal`.                                                                                |
-| `bool isEmpty()`        | Returns `True` if the stack is empty i.e. no element in the array holds a value; returns `False` otherwise.   |
-| `bool isFull()`         | Returns `True` if the stack is full i.e. every element in the array holds a value; returns `False` otherwise. |
+| `bool isEmpty()`        | Returns `true` if the stack is empty i.e. no element in the array holds a value; returns `false` otherwise.   |
+| `bool isFull()`         | Returns `true` if the stack is full i.e. every element in the array holds a value; returns `false` otherwise. |
 
 ### Entry Point Function
 ```cpp
