@@ -8,7 +8,7 @@
 ### Tasks
 Prompt the user to input a string of 20 characters at most. No input validation
 is required. Validate the string to be a valid expression with the use of a
-`CStack`. Once the whole expression is checked, notify the user of the validity
+`Stack`. Once the whole expression is checked, notify the user of the validity
 of the expression.
 
 An expression is valid if:
@@ -34,63 +34,58 @@ Enter an expression: [({)}]
 It's NOT a valid expression
 ```
 
-### CStack Class
+### Stack Class
 All class members must be `private` unless they need to be `public`.
 
 ##### Fields
-| Declaration     | Description                                                         |
-|-----------------|---------------------------------------------------------------------|
-| `int topVal`    | Index of the last element of array that holds a value in the stack. |
-| `char data[21]` | Holds values being pushed onto the stack.                           |
+| Declaration          | Description                                                 |
+|----------------------|-------------------------------------------------------------|
+| `int t`              | Index of last element of `container` that holds a value.    |
+| `char container[21]` | The underlying container - holds the elements being pushed. |
 
 ##### Methods
-| Declaration             | Description                                                                                                   |
-|-------------------------|---------------------------------------------------------------------------------------------------------------|
-| `void push(const char)` | Adds a character to the top of the stack                                                                      |
-| `void pop()`            | Removes the top-most item from the stack.                                                                     |
-| `char top()`            | Returns the value of `topVal`.                                                                                |
-| `bool isEmpty()`        | Returns `true` if the stack is empty i.e. no element in the array holds a value; returns `false` otherwise.   |
-| `bool isFull()`         | Returns `true` if the stack is full i.e. every element in the array holds a value; returns `false` otherwise. |
+| Declaration             | Description                                       |
+|-------------------------|---------------------------------------------------|
+| `void push(const char)` | Inserts an element at the top.                    |
+| `void pop()`            | Removes the top element.                          |
+| `char top()`            | Accesses the top element.                         |
+| `bool empty()`          | Checks whether the underlying container is empty. |
+| `bool full()`           | Checks whether the underlying container is full.  |
 
 ### Test.cpp
 ```cpp
 #include <cstring>
 #include <iostream>
 
-#include "CStack.h"
+#include "Stack.hpp"
 
-using namespace std;
-
-bool isValidExpression(CStack&, char*);
+bool isValid(Stack& stack, char* exp);
 
 int main(void) {
-    char expression[21];
+    char exp[21];
+    Stack stack;
 
-    cout << "Enter an expression: ";
-    cin >> expression;
+    std::cout << "Enter an expression: ";
+    std::cin >> expression;
 
-    CStack stack1;
-
-    if (isValidExpression(stack1, expression)) {
-        cout << "\nIt's a valid expression";
+    if (isValid(stack, exp)) {
+        std::cout << "\nIt's a valid expression.";
     } else {
-        cout << "\nIt's NOT a valid expression";
+        std::cout << "\nIt's NOT a valid expression.";
     }
-
-    return 0;
 }
 
-bool isValidExpression (CStack& stackA, char* strExp) {
-
-}
+bool isValid(Stack& stack, char* exp) { }
 ```
 
 ### File Structure
 Put the following files into a `ZIP` file:
 ```
-CStack.cpp
-CStack.h
+Stack.cpp
+Stack.hpp
 Test.cpp
 ```
 
-Original instructions can be found [here](https://www.genghiskhent.com/jak/836/assignments/836a2.html) or `/docs`.
+Original instructions can be found
+[here](https://www.genghiskhent.com/jak/836/assignments/836a2.html) or on the
+wiki.

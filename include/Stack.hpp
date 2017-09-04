@@ -13,12 +13,13 @@ public:
     Stack();
 
     /**
-     * Inserts an element at the top.
+     * Creates a new element at the top of the stack and assigns to it the given
+     * data.
      *
-     * @param   c       The element to insert.
+     * @param   data       The data to insert.
      * @throws  std::logic_error    Thrown if the stack is full.
      */
-    void push(const char c);
+    void push(const char data);
 
     /**
      * Removes the top element.
@@ -28,19 +29,20 @@ public:
     void pop();
 
     /**
-     * Accesses the top element.
+     * Returns a constant reference to the data at the element at the top of
+     * the stack.
      *
-     * @return          The top element.
+     * @return          The data at the top element.
      * @throws  std::logic_error    Thrown if the stack is empty.
      */
-    char top() const;
+    const char& top() const;
 
     /**
      * Checks whether the underlying container is empty.
      *
      * @return          @c true if empty; @c false otherwise.
      */
-    bool isEmpty() const;
+    bool empty() const;
 
 
     /**
@@ -48,11 +50,11 @@ public:
      *
      * @return          @c true if full; @c false otherwise.
      */
-    bool isFull() const;
+    bool full() const;
 
 private:
-    int topVal; // The index of the top element.
-    char data[21]; // The underlying container.
+    int t; // The index of the top element.
+    char container[21]; // The underlying container.
 };
 
 #endif

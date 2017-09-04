@@ -46,7 +46,7 @@ bool isValid(Stack& stack, const std::string& exp) {
     const std::unordered_set<char> right = {')', ']', '}'};
 
     for (const char c : exp) {
-        if (stack.isFull()) {
+        if (stack.full()) {
             // Expression is too long.
             return false;
         }
@@ -55,7 +55,7 @@ bool isValid(Stack& stack, const std::string& exp) {
             // Push only left characters onto the stack; right characters are
             // never pushed.
             stack.push(c);
-        } else if (!stack.isEmpty() &&
+        } else if (!stack.empty() &&
                    right.count(c) &&
                    std::abs(stack.top() - c) <= 2) {
              /*
@@ -79,5 +79,5 @@ bool isValid(Stack& stack, const std::string& exp) {
 
     // If the stack isn't empty, it means there is at least one dangling left
     // character without a right pair.
-    return stack.isEmpty();
+    return stack.empty();
 }

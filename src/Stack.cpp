@@ -1,40 +1,40 @@
 #include <stdexcept>
 #include "Stack.hpp"
 
-Stack::Stack() : topVal(-1) {
-    std::fill(data, data + 21, 0);
+Stack::Stack() : t(-1) {
+    std::fill(container, container + 21, 0);
 }
 
-void Stack::push(const char c) {
-    if (isFull()) {
+void Stack::push(const char data) {
+    if (full()) {
         throw std::logic_error("Cannot push onto a full stack.");
     }
 
-    ++topVal;
-    data[topVal] = c;
+    ++t;
+    container[t] = data;
 }
 
 void Stack::pop() {
-    if (isEmpty()) {
+    if (empty()) {
         throw std::logic_error("Cannot pop an empty stack.");
     }
 
-    data[topVal] = 0;
-    --topVal;
+    container[t] = 0;
+    --t;
 }
 
-char Stack::top() const {
-    if (isEmpty()) {
+const char& Stack::top() const {
+    if (empty()) {
         throw std::logic_error("Cannot retrieve the top of an empty stack.");
     }
 
-    return data[topVal];
+    return container[t];
 }
 
-bool Stack::isEmpty() const {
-    return topVal == -1;
+bool Stack::empty() const {
+    return t == -1;
 }
 
-bool Stack::isFull() const {
-    return topVal == 21;
+bool Stack::full() const {
+    return t == 21;
 }
