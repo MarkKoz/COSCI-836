@@ -3,7 +3,7 @@
 
 Date::Date() : month(1), day(1), year(1900) { }
 
-void Date::setDate(const int m, const int d, const int y) {
+void Date::set(int m, int d, int y) {
     if (!setMonth(m) || !setDay(d) || !setYear(y)) {
         month = 9;
         day = 2;
@@ -29,6 +29,6 @@ bool Date::setYear(const int y) {
     return y >= 1900 && y <= 2008;
 }
 
-void Date::printDate() const {
+void Date::print() const {
     std::cout << month << '/' << day << '/' << year << '\n';
 }

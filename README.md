@@ -6,7 +6,12 @@
 **Textbook:** [Dale, Nell, et al. _C++ Plus Data Structures_. 6th ed.](http://www.jblearning.com/catalog/9781284089189/) (ISBN-13: 978-1284089189)
 
 ### Tasks
-The user is prompted to enter a month, day and year. If the date is valid, then the `setDate` member function assigns the month, day, and year inputs to the `Date` instance. If the date is not valid, then the values `9`, `2`, and `2008` are assigned respectively to the `month`, `day`, and year member variables of the `Date` instance. The `printDate` function then outputs the `Date` instance in the format `m/d/yyy`.
+The user is prompted to enter a month, day and year. If the date is valid, then
+the `set` member function assigns the month, day, and year inputs to the `Date`
+instance. If the date is not valid, then the values `9`, `2`, and `2008` are
+assigned respectively to the `month`, `day`, and year member variables of the
+`Date` instance. The `print` function then outputs the `Date` instance in the
+format `m/d/yyy`.
 
 A date is valid if:
 * The month is in the range \[1,12].
@@ -38,31 +43,29 @@ All class members must be `private` unless they need to be `public`.
 | `int year`  | Number corresponding to year.          |
 
 ##### Methods
-| Declaration                   | Description                                                                                                                                    |
-|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| `void setDate(int, int, int)` | Assigns the value of each parameter to the month, date and year member variables respectively unless the date is not valid (see next section). |
-| `void printDate()`            | Outputs the date in the format `m/d/yyy`, such as `9/2/2008`.                                                                               |
+| Declaration               | Description                                                                                                                                    |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| `void set(int, int, int)` | Assigns the value of each parameter to the month, date and year member variables respectively unless the date is not valid (see next section). |
+| `void print()`            | Outputs the date in the format `m/d/yyy`, such as `9/2/2008`.                                                                                  |
 
 ### Test.cpp
-Do not modify the code except for replacing the comments with their respective method calls.
+Do not modify the code except for replacing the comments with their respective
+method calls.
 
 ```cpp
 #include <iostream>
-#include "Date.h"
 
-using namespace std;
+#include "Date.hpp"
 
 int main() {
     Date d1;
     int m, d, y;
 
-    cout << "Enter month, day and year separated by spaces: ";
-    cin >> m >> d >> y;
+    std::cout << "Enter month, day and year separated by spaces: ";
+    std::cin >> m >> d >> y;
 
-    // call setDate
-    // call printDate
-
-    return 0;
+    // Call Date.set.
+    // Call Date.print.
 }
 ```
 
@@ -70,8 +73,10 @@ int main() {
 Put the following files into a `ZIP` file:
 ```
 Date.cpp
-Date.h
+Date.hpp
 Test.cpp
 ```
 
-Original instructions can be found [here](https://www.genghiskhent.com/jak/836/assignments/836a1.html) or in `/docs`.
+Original instructions can be found
+[here](https://www.genghiskhent.com/jak/836/assignments/836a1.html) or on the
+wiki.

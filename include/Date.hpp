@@ -26,12 +26,12 @@ public:
      * @param   d       the value to which to set the day
      * @param   y       the value to which to set the year
      */
-    void setDate(int m, int d, int y);
+    void set(int m, int d, int y);
 
     /**
      * Prints the date in the format m/d/yyyy.
      */
-    void printDate() const;
+    void print() const;
 
 private:
     int month;
