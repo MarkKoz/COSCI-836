@@ -40,7 +40,7 @@ All class members must be `private` unless they need to be `public`.
 ##### Fields
 | Declaration          | Description                                                 |
 |----------------------|-------------------------------------------------------------|
-| `int t`              | Index of last element of `container` that holds a value.    |
+| `int topIndex`       | Index of last element of `container` that holds a value.    |
 | `char container[21]` | The underlying container - holds the elements being pushed. |
 
 ##### Methods

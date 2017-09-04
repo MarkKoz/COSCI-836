@@ -44,7 +44,6 @@ public:
      */
     bool empty() const;
 
-
     /**
      * Checks whether the underlying container is full.
      *
@@ -53,7 +52,7 @@ public:
     bool full() const;
 
 private:
-    int t; // The index of the top element.
+    int topIndex; // The index of the top element.
     char container[21]; // The underlying container.
 };
 

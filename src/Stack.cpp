@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include "Stack.hpp"
 
-Stack::Stack() : t(-1) {
+Stack::Stack() : topIndex(-1) {
     std::fill(container, container + 21, 0);
 }
 
@@ -10,8 +10,8 @@ void Stack::push(const char data) {
         throw std::logic_error("Cannot push onto a full stack.");
     }
 
-    ++t;
-    container[t] = data;
+    ++topIndex;
+    container[topIndex] = data;
 }
 
 void Stack::pop() {
@@ -19,8 +19,8 @@ void Stack::pop() {
         throw std::logic_error("Cannot pop an empty stack.");
     }
 
-    container[t] = 0;
-    --t;
+    container[topIndex] = 0;
+    --topIndex;
 }
 
 const char& Stack::top() const {
@@ -28,13 +28,13 @@ const char& Stack::top() const {
         throw std::logic_error("Cannot retrieve the top of an empty stack.");
     }
 
-    return container[t];
+    return container[topIndex];
 }
 
 bool Stack::empty() const {
-    return t == -1;
+    return topIndex == -1;
 }
 
 bool Stack::full() const {
-    return t == 21;
+    return topIndex == 21;
 }
