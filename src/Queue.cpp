@@ -1,9 +1,12 @@
 #include "Queue.hpp"
 
 template<typename T>
-Queue<T>::Queue(const int size) : front(size), back(size), size(size + 1) {
-    c = new T[size];
-}
+Queue<T>::Queue(const int size)
+        : front(size),
+          back(size),
+          size(size + 1),
+          c(new std::unique_ptr<T>[this->size]) { }
+
 
 template<typename T>
 Queue<T>::~Queue() {

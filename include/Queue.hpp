@@ -1,6 +1,7 @@
 #ifndef ASSIGNMENT_3_QUEUE_HPP
 #define ASSIGNMENT_3_QUEUE_HPP
 
+#include <memory>
 #include <string>
 
 /**
@@ -17,6 +18,11 @@ public:
      */
     explicit Queue(const int size);
 
+    /**
+     * @brief Destructor.
+     *
+     * Deletes the underlying container.
+     */
     ~Queue();
 
     /**
@@ -58,10 +64,10 @@ public:
     bool full();
 
 private:
-    int front;
-    int back;
-    int size;
-    T* c;
+    int front; // Index of the element before the queue's front-most element.
+    int back; // Index of the queue's back-most element.
+    int size; // Number of elements in the array.
+    std::unique_ptr<T>* c; // The underlying container.
 };
 
 #include "../src/Queue.cpp"
