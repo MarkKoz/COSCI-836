@@ -47,6 +47,12 @@ enum Selection {
  * Displays a menu with selectable options to the user and prompts the user to
  * make a @c Selection.
  *
+ * After the selected operation completes, the user is displayed the menu and
+ * is prompted for a selection again until @c Selection::EXIT is selected.
+ *
+ * If the selection is not in the range [1,4], the user is prompted to make a
+ * new selection.
+ *
  * @return          The @c Selection made.
  */
 Selection menu();

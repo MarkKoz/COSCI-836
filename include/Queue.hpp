@@ -32,7 +32,7 @@ public:
      * @param   data    The data to insert.
      * @throws  std::logic_error    Thrown if the stack is full.
      */
-    void push(T& data);
+    void push(std::unique_ptr<T> data);
 
     /**
      * Removes the front element.
@@ -47,7 +47,7 @@ public:
      * @return          A pointer to the element at the front of the queue.
      * @throws  std::logic_error    Thrown if the stack is empty.
      */
-    T* getFront();
+    std::unique_ptr<T> getFront();
 
     /**
      * Checks whether the queue is empty.

@@ -149,7 +149,7 @@ All class members must be `private` unless they need to be `public`.
 | `void Queue()` | Constructs an empty queue. Initializes `front` and `back` and, optionally, initialises elements in `c`. |
 | `void push(T)` | Inserts an element at the end.                                                                          |
 | `void pop()`   | Removes the first element.                                                                              |
-| `T front()`    | Accesses the first element.                                                                             |
+| `T getFront()` | Accesses the first element.                                                                             |
 | `bool empty()` | Returns `true` if the queue is empty i.e. no element in `c` holds a value; returns `false` otherwise.   |
 | `bool full()`  | Returns `true` if the queue is full i.e. every element in `c` holds a value; returns `false` otherwise. |
 

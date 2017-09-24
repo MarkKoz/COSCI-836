@@ -14,7 +14,7 @@ Queue<T>::~Queue() {
 }
 
 template<typename T>
-void Queue<T>::push(T& data) {
+void Queue<T>::push(std::unique_ptr<T> data) {
 
 }
 
@@ -24,8 +24,8 @@ void Queue<T>::pop() {
 }
 
 template<typename T>
-T* Queue<T>::getFront() {
-    return T();
+std::unique_ptr<T> Queue<T>::getFront() {
+    return nullptr;
 }
 
 template<typename T>
