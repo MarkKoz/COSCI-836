@@ -37,10 +37,10 @@ struct PassengerQueues {
  * Represents a menu selection.
  */
 enum Selection {
-    ADD,
-    DELETE,
-    SHOW,
-    EXIT
+    ADD = 1,
+    DELETE = 2,
+    SHOW = 3,
+    EXIT = 4
 };
 
 /**
@@ -120,9 +120,23 @@ Selection menu() {
     std::cout << "Enter choice: ";
 
     std::string selection;
-    std::getline(std::cin, selection);
 
-    return static_cast<Selection>(std::stoi(selection));
+    while (true) {
+        std::getline(std::cin, selection);
+
+        try {
+            const int i = std::stoi(selection);
+
+            if (i < 1 || i > 4) {
+                throw std::invalid_argument("The selection is out of the valid "
+                                            "range [1,4].");
+            }
+
+            return static_cast<Selection>(i);
+        } catch (std::invalid_argument& e) {
+            std::cout << "Invalid selection, try again: ";
+        }
+    }
 }
 
 void addPassenger(PassengerQueues& queues) {
