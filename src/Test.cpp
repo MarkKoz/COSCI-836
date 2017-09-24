@@ -1,61 +1,138 @@
+#include <array>
 #include <iostream>
-#include <string>
 
 #include "Queue.hpp"
 
-using namespace std;
+struct Passenger {
+    /**
+    * Determines which queue a @c Passenger is in.
+    */
+    static enum Status {
+        BOOKED,
+        WAITING,
+        NONE
+    };
 
-enum choice {
-    BOOKED,
-    WAITING
+    std::string name = "";
+    Status status = Status::NONE;
+
+    Passenger() = default;
+
+    explicit Passenger(std::string& name) : name(name) { };
+
+    Passenger(std::string& name, Status status)
+            : name(name), status(status) { };
 };
 
-const int LINES = 2;
+struct Queues {
+    Queue booked = Queue(3);
+    Queue waiting = Queue(3);
 
-int showMenu();
+    // Queues() = default;
 
-void addPassenger(CQueue*);
+    // Queues(Queue booked, Queue waiting) : booked(booked), waiting(waiting) { };
+};
 
-void deletePassenger(CQueue*);
+/**
+ * Represents a menu selection.
+ */
+enum Selection {
+    ADD,
+    DELETE,
+    SHOW,
+    EXIT
+};
 
-void showPassengers(CQueue*);
+/**
+ * Displays a menu with selectable options to the user and prompts the user to
+ * make a @c Selection.
+ *
+ * @return          The @c Selection made.
+ */
+Selection menu();
+
+/**
+ * @brief Adds a @c Passenger to a @c Queue.
+ *
+ * The user is prompted to enter the @c Passenger's name. An attempt is made to
+ * add the @c Passenger to either the booked @c Queue (takes precedence) or the
+ * waiting list @c Queue - each has a total capacity of 3.
+ *
+ * A message is displayed indicating the success or failure of the addition.
+ * A failure occurs if both queues are full.
+ *
+ * @param   queues  @c Queues for booked and waiting list.
+ */
+void addPassenger(Queues& queues);
+
+/**
+ * @brief Removes the front-most @c Passenger from the booked @c Queue.
+ *
+ * If there are @c Passengers in the waiting list @c Queue, the front-most of
+ * those @c Passengers is moved to the back of the booked @c Queue.
+ *
+ * A message is displayed indicating the success or failure of the removal.
+ * A failure occurs if no @c Passenger is left for deletion.
+ *
+ * @param   queues  @c Queues for booked and waiting list.
+ */
+void deletePassenger(Queues& queues);
+
+/**
+ * @brief Lists all passengers.
+ *
+ * Displays a list of all passengers in each @c Queue (booked and waiting list).
+ *
+ * @param   queues  @c Queues for booked and waiting list.
+ */
+void showPassengers(Queues& queues);
 
 int main() {
-    CQueue qPassengers[LINES];
-    int x;
+    Queues queues = Queues();
+    Selection selection;
 
     do {
-        x = showMenu();
+        selection = menu();
 
-        switch (x) {
-            case 1:
-                addPassenger(qPassengers);
+        switch (selection) {
+            case Selection::ADD:
+                addPassenger(queues);
                 break;
-            case 2:
-                deletePassenger(qPassengers);
+            case Selection::DELETE:
+                deletePassenger(queues);
                 break;
-            case 3:
-                showPassengers(qPassengers);
+            case Selection::SHOW:
+                showPassengers(queues);
+                break;
+            default:
                 break;
         }
-    } while (x != 4);
-
-    return 0;
+    } while (selection != Selection::EXIT);
 }
 
-int showMenu() {
-    int select;
+Selection menu() {
+    std::cout << "Menu\n";
+    std::cout << "========\n";
+    std::cout << "1. Add Passenger\n";
+    std::cout << "2. Delete Passenger\n";
+    std::cout << "3. Show Passengers\n";
+    std::cout << "4. Exit\n";
+    std::cout << "Enter choice: ";
 
-    cout << "Menu\n";
-    cout << "========\n";
-    cout << "1. Add Passenger\n";
-    cout << "2. Delete Passenger\n";
-    cout << "3. Show Passengers\n";
-    cout << "4. Exit\n";
-    cout << "Enter choice: ";
-    cin >> select;
+    int selection;
+    std::cin >> selection;
 
-    return select;
+    return static_cast<Selection>(selection);
 }
 
-// To do: implement addPassenger, deletePassenger and showPassengers
+void addPassenger(Queues& queues) {
+
+}
+
+void deletePassenger(Queues& queues) {
+
+}
+
+void showPassengers(Queues& queues) {
+
+}
