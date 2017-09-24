@@ -1,7 +1,6 @@
 #ifndef ASSIGNMENT_3_QUEUE_HPP
 #define ASSIGNMENT_3_QUEUE_HPP
 
-#include <memory>
 #include <string>
 
 /**
@@ -29,10 +28,10 @@ public:
      * Creates a new element at the back of the queue and assigns to it the
      * given data.
      *
-     * @param   data    The data to insert.
+     * @param   data    A pointer to the data to insert.
      * @throws  std::logic_error    Thrown if the stack is full.
      */
-    void push(std::unique_ptr<T> data);
+    void push(T* data);
 
     /**
      * Removes the front element.
@@ -47,27 +46,27 @@ public:
      * @return          A pointer to the element at the front of the queue.
      * @throws  std::logic_error    Thrown if the stack is empty.
      */
-    std::unique_ptr<T> getFront();
+    T* getFront();
 
     /**
      * Checks whether the queue is empty.
      *
      * @return          @c true if empty; @c false otherwise.
      */
-    bool empty();
+    bool empty() const;
 
     /**
      * Checks whether the queue is full.
      *
      * @return          @c true if full; @c false otherwise.
      */
-    bool full();
+    bool full() const;
 
-private:
+public:
     int front; // Index of the element before the queue's front-most element.
     int back; // Index of the queue's back-most element.
     int size; // Number of elements in the array.
-    std::unique_ptr<T>* c; // The underlying container.
+    T** c; // The underlying container.
 };
 
 #include "../src/Queue.cpp"

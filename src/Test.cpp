@@ -1,5 +1,5 @@
-#include <array>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 
 #include "Queue.hpp"
@@ -9,20 +9,15 @@
  */
 enum Status {
     BOOKED,
-    WAITING,
-    NONE
+    WAITING
 };
 
 struct Passenger {
-    std::string name = "";
-    Status status = Status::NONE;
+    std::string name;
+    Status status;
 
-    Passenger() = default;
-
-    explicit Passenger(std::string& name) : name(name) { };
-
-    Passenger(std::string& name, Status status)
-            : name(name), status(status) { };
+    Passenger(std::string name, Status status)
+            : name(std::move(name)), status(status) { };
 };
 
 /**
@@ -146,13 +141,19 @@ Selection menu() {
 }
 
 void addPassenger(PassengerQueues& queues) {
-
+    queues.booked.push(new Passenger("John", Status::BOOKED));
+    queues.booked.push(new Passenger("Mary", Status::BOOKED));
+    queues.booked.push(new Passenger("Lucas", Status::BOOKED));
 }
 
 void deletePassenger(PassengerQueues& queues) {
-
+    queues.booked.pop();
 }
 
 void showPassengers(PassengerQueues& queues) {
-
+    if (queues.booked.empty()) {
+        std::cout << "Queue is empty.\n";
+    } else {
+        std::cout << queues.booked.getFront()->name << '\n';
+    }
 }
