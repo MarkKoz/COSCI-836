@@ -64,4 +64,6 @@ private:
     T* c;
 };
 
+#include "../src/Queue.cpp"
+
 #endif

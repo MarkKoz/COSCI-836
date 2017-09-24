@@ -1,18 +1,19 @@
 #include <array>
 #include <iostream>
+#include <string>
 
 #include "Queue.hpp"
 
-struct Passenger {
-    /**
-    * Determines which queue a @c Passenger is in.
-    */
-    static enum Status {
-        BOOKED,
-        WAITING,
-        NONE
-    };
+/**
+ * Determines which queue a @c Passenger is in.
+ */
+enum Status {
+    BOOKED,
+    WAITING,
+    NONE
+};
 
+struct Passenger {
     std::string name = "";
     Status status = Status::NONE;
 
@@ -24,13 +25,12 @@ struct Passenger {
             : name(name), status(status) { };
 };
 
-struct Queues {
-    Queue booked = Queue(3);
-    Queue waiting = Queue(3);
-
-    // Queues() = default;
-
-    // Queues(Queue booked, Queue waiting) : booked(booked), waiting(waiting) { };
+/**
+ * A container for the booked and waiting @c Queues of @c Passengers.
+ */
+struct PassengerQueues {
+    Queue<Passenger> booked = Queue<Passenger>(3);
+    Queue<Passenger> waiting = Queue<Passenger>(3);
 };
 
 /**
@@ -63,7 +63,7 @@ Selection menu();
  *
  * @param   queues  @c Queues for booked and waiting list.
  */
-void addPassenger(Queues& queues);
+void addPassenger(PassengerQueues& queues);
 
 /**
  * @brief Removes the front-most @c Passenger from the booked @c Queue.
@@ -76,7 +76,7 @@ void addPassenger(Queues& queues);
  *
  * @param   queues  @c Queues for booked and waiting list.
  */
-void deletePassenger(Queues& queues);
+void deletePassenger(PassengerQueues& queues);
 
 /**
  * @brief Lists all passengers.
@@ -85,10 +85,10 @@ void deletePassenger(Queues& queues);
  *
  * @param   queues  @c Queues for booked and waiting list.
  */
-void showPassengers(Queues& queues);
+void showPassengers(PassengerQueues& queues);
 
 int main() {
-    Queues queues = Queues();
+    PassengerQueues queues = PassengerQueues();
     Selection selection;
 
     do {
@@ -119,20 +119,20 @@ Selection menu() {
     std::cout << "4. Exit\n";
     std::cout << "Enter choice: ";
 
-    int selection;
-    std::cin >> selection;
+    std::string selection;
+    std::getline(std::cin, selection);
 
-    return static_cast<Selection>(selection);
+    return static_cast<Selection>(std::stoi(selection));
 }
 
-void addPassenger(Queues& queues) {
-
-}
-
-void deletePassenger(Queues& queues) {
+void addPassenger(PassengerQueues& queues) {
 
 }
 
-void showPassengers(Queues& queues) {
+void deletePassenger(PassengerQueues& queues) {
+
+}
+
+void showPassengers(PassengerQueues& queues) {
 
 }

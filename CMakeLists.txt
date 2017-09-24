@@ -4,7 +4,7 @@ project(Assignment_3)
 include_directories(include)
 set(SOURCE_FILES
         include/Queue.hpp
-        src/Queue.cpp
+        # src/Queue.cpp
         src/Test.cpp)
 add_executable(Assignment_3 ${SOURCE_FILES})
 

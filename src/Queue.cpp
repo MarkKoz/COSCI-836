@@ -1,32 +1,36 @@
 #include "Queue.hpp"
 
 template<typename T>
-Queue::Queue(const int size) : front(size), back(size), size(size + 1) {
+Queue<T>::Queue(const int size) : front(size), back(size), size(size + 1) {
     c = new T[size];
 }
 
-Queue::~Queue() {
+template<typename T>
+Queue<T>::~Queue() {
     delete[] c;
 }
 
-template<class T>
-void Queue::push(T& data) {
+template<typename T>
+void Queue<T>::push(T& data) {
 
 }
 
-void Queue::pop() {
+template<typename T>
+void Queue<T>::pop() {
 
 }
 
-template<class T>
-T* Queue::getFront() {
+template<typename T>
+T* Queue<T>::getFront() {
     return T();
 }
 
-bool Queue::empty() {
+template<typename T>
+bool Queue<T>::empty() {
     return false;
 }
 
-bool Queue::full() {
+template<typename T>
+bool Queue<T>::full() {
     return false;
 }
