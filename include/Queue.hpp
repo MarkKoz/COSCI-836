@@ -4,6 +4,8 @@
 #include <iterator>
 #include <string>
 
+typedef std::string Passenger;
+
 /**
  * A container which enforces first in first out (FIFO) behaviour. Wraps
  * around an array.
@@ -21,39 +23,49 @@ public:
         typedef T* pointer;
         typedef T& reference;
 
-        explicit iterator(pointer p) : ptr(p) { }
+        explicit iterator(Queue* queue, pointer ptr) : q(queue), p(ptr) { }
 
         iterator operator++() {
             iterator i = *this;
-            ptr++;
+
+            if (p == q->c + q->size - 1) {
+                p = q->c;
+            } else {
+                ++p;
+            }
 
             return i;
         }
 
         iterator operator++(int dummy) {
-            ptr++;
+            if (p == q->c + q->size - 1) {
+                p = q->c;
+            } else {
+                ++p;
+            }
 
             return *this;
         }
 
         reference operator*() const {
-            return *ptr;
+            return *p;
         }
 
         pointer operator->() const {
-            return ptr;
+            return p;
         }
 
         bool operator==(const iterator& rhs) const {
-            return ptr == rhs.ptr;
+            return p == rhs.p;
         }
 
         bool operator!=(const iterator& rhs) const {
-            return ptr != rhs.ptr;
+            return p != rhs.p;
         }
 
     private:
-        pointer ptr;
+        Queue* q;
+        pointer p;
     };
 
     class const_iterator {
@@ -64,39 +76,50 @@ public:
         typedef const T* pointer;
         typedef const T& reference;
 
-        explicit const_iterator(pointer p) : ptr(p) { }
+        explicit const_iterator(const Queue* queue, pointer ptr)
+                : q(queue), p(ptr) { }
 
         const_iterator operator++() {
             const_iterator i = *this;
-            ptr++;
+
+            if (p == q->c + q->size - 1) {
+                p = q->c;
+            } else {
+                ++p;
+            }
 
             return i;
         }
 
         const_iterator operator++(int dummy) {
-            ptr++;
+            if (p == q->c + q->size - 1) {
+                p = q->c;
+            } else {
+                ++p;
+            }
 
             return *this;
         }
 
         reference operator*() const {
-            return *ptr;
+            return *p;
         }
 
         pointer operator->() const {
-            return ptr;
+            return p;
         }
 
         bool operator==(const const_iterator& rhs) const {
-            return ptr == rhs.ptr;
+            return p == rhs.p;
         }
 
         bool operator!=(const const_iterator& rhs) const {
-            return ptr != rhs.ptr;
+            return p != rhs.p;
         }
 
     private:
-        pointer ptr;
+        const Queue* q;
+        pointer p;
     };
 
     /**
@@ -118,7 +141,7 @@ public:
      * @param   data    A pointer to the data to insert.
      * @throws  std::logic_error    Thrown if the stack is full.
      */
-    void push(T const data);
+    void push(T&& data);
 
     /**
      * Removes the front element.
@@ -134,7 +157,7 @@ public:
      * @return          A pointer to the element at the front of the queue.
      * @throws  std::logic_error    Thrown if the stack is empty.
      */
-    T& getFront();
+    T& getFront() const;
 
     /**
      * Checks whether the queue is empty.
@@ -151,19 +174,19 @@ public:
     bool full() const;
 
     iterator begin() {
-        return iterator(c);
+        return iterator(this, c + ((front + 1) % size));
     }
 
     iterator end() {
-        return iterator(c + size - 1);
+        return iterator(this, c + ((back + 1) % size));
     }
 
     const_iterator begin() const {
-        return const_iterator(c);
+        return const_iterator(this, c + ((front + 1) % size));
     }
 
     const_iterator end() const {
-        return const_iterator(c + size - 1);
+        return const_iterator(this, c + ((back + 1) % size));
     }
 
 private:
@@ -173,6 +196,6 @@ private:
     T* c; // The underlying container.
 };
 
-#include "../src/Queue.cpp"
+#include "Queue.cpp"
 
 #endif

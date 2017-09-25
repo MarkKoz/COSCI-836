@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.9)
 project(Assignment_3)
 
-include_directories(include)
+include_directories(
+        include
+        src)
 set(SOURCE_FILES
         include/Queue.hpp
         # src/Queue.cpp

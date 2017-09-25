@@ -4,18 +4,12 @@
 
 #include "Queue.hpp"
 
-struct Passenger {
-    std::string name;
-
-    explicit Passenger(std::string name) : name(std::move(name)) { };
-};
-
 /**
  * A container for the booked and waiting @c Queues of @c Passengers.
  */
 struct PassengerQueues {
-    Queue<const Passenger*> booked = Queue<const Passenger*>(3);
-    Queue<const Passenger*> waiting = Queue<const Passenger*>(3);
+    Queue<Passenger> booked = Queue<Passenger>(3);
+    Queue<Passenger> waiting = Queue<Passenger>(3);
 };
 
 /**
@@ -139,10 +133,10 @@ void addPassenger(PassengerQueues& queues) {
     std::getline(std::cin, name);
 
     if (!queues.booked.full()) {
-        queues.booked.push(new Passenger(name));
+        queues.booked.push(Passenger(name));
         std::cout << "Booking " << name << " for the flight.\n";
     } else if (!queues.waiting.full()) {
-        queues.waiting.push(new Passenger(name));
+        queues.waiting.push(Passenger(name));
         std::cout << "Sorry, the plane is fully booked. Adding " << name
                   << " to the waiting list.\n";
     } else {
@@ -153,23 +147,17 @@ void addPassenger(PassengerQueues& queues) {
 
 void deletePassenger(PassengerQueues& queues) {
     if (!queues.booked.empty()) {
-        std::cout << "Removing " << queues.booked.getFront()->name
+        std::cout << "Removing " << queues.booked.getFront()
                   << " from the booked passengers queue.\n";
         queues.booked.pop();
 
         if (!queues.waiting.empty()) {
-            // Because pop() deletes the Passenger, its address needs to be
-            // saved here so that it can be pushed onto the booked queue and
-            // then set to nullptr in the underlying container so that the
-            // Passenger is not deleted once popped. This is accomplished by
-            // having getFront() return a reference to the pointer.
-            const Passenger* const front = queues.waiting.getFront();
-            queues.waiting.getFront() = nullptr;
-            queues.waiting.pop();
+            Passenger& front = queues.waiting.getFront();
 
-            std::cout << "Booking " << front->name
+            std::cout << "Booking " << front
                       << " from the waiting list.\n";
-            queues.booked.push(front);
+            queues.booked.push(std::move(front));
+            queues.waiting.pop();
         }
     } else {
         std::cout << "There are no passengers to delete.\n";
@@ -182,15 +170,15 @@ void showPassengers(PassengerQueues& queues) {
     } else {
         std::cout << "\nBooked Passengers\n=================\n";
 
-        for (const Passenger* p : queues.booked) {
-            std::cout << p->name << '\n';
+        for (const Passenger& p : queues.booked) {
+            std::cout << p << '\n';
         }
 
         if (!queues.waiting.empty()) {
             std::cout << "\nWaiting List\n=================\n";
 
-            for (const Passenger* p : queues.waiting) {
-                std::cout << p->name << '\n';
+            for (const Passenger& p : queues.waiting) {
+                std::cout << p << '\n';
             }
         }
     }
