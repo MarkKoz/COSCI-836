@@ -8,14 +8,14 @@ Queue<T>::Queue(const int size)
         : front(size),
           back(size),
           size(size + 1),
-          c(new T*[this->size]) {
+          c(new const T* [this->size]) {
     std::fill(c, c + size, nullptr);
 }
 
 
 template<typename T>
 Queue<T>::~Queue() {
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; ++i) {
         delete c[i];
     }
 
@@ -23,7 +23,7 @@ Queue<T>::~Queue() {
 }
 
 template<typename T>
-void Queue<T>::push(T* data) {
+void Queue<T>::push(const T* const data) {
     if (full()){
         throw std::logic_error("Cannot push onto a full queue.");
     }
@@ -44,7 +44,7 @@ void Queue<T>::pop() {
 }
 
 template<typename T>
-T* Queue<T>::getFront() {
+const T*& Queue<T>::getFront() {
     return c[(front + 1) % size];
 }
 

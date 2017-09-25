@@ -31,7 +31,7 @@ public:
      * @param   data    A pointer to the data to insert.
      * @throws  std::logic_error    Thrown if the stack is full.
      */
-    void push(T* data);
+    void push(const T* const data);
 
     /**
      * Removes the front element.
@@ -41,12 +41,13 @@ public:
     void pop();
 
     /**
-     * Returns a pointer to the element at the front of the queue.
+     * Returns a reference to a pointer to the element at the front of the
+     * queue.
      *
      * @return          A pointer to the element at the front of the queue.
      * @throws  std::logic_error    Thrown if the stack is empty.
      */
-    T* getFront();
+    const T*& getFront();
 
     /**
      * Checks whether the queue is empty.
@@ -62,11 +63,11 @@ public:
      */
     bool full() const;
 
-public:
+private:
     int front; // Index of the element before the queue's front-most element.
     int back; // Index of the queue's back-most element.
     int size; // Number of elements in the array.
-    T** c; // The underlying container.
+    const T** c; // The underlying container.
 };
 
 #include "../src/Queue.cpp"
