@@ -5,7 +5,7 @@
 #include "Queue.hpp"
 
 template<typename T>
-Queue<T>::Queue(const int size)
+Queue<T>::Queue(const std::size_t size)
         : front(size),
           back(size),
           size(size + 1),
@@ -35,7 +35,7 @@ void Queue<T>::push(T&& data) {
 template<typename T>
 void Queue<T>::pop() {
     if (empty()) {
-        throw std::logic_error("Cannot pop off an empty queue.");
+        throw std::logic_error("Cannot pop an empty queue.");
     }
 
     front = (front + 1) % size;
@@ -56,4 +56,24 @@ bool Queue<T>::empty() const {
 template<typename T>
 bool Queue<T>::full() const {
     return front == (back + 1) % size;
+}
+
+template<typename T>
+QueueIterator<T> Queue<T>::begin() {
+    return QueueIterator<T>(c + ((front + 1) % size), c, size);
+}
+
+template<typename T>
+QueueIterator<T> Queue<T>::end() {
+    return QueueIterator<T>(c + ((back + 1) % size), c, size);
+}
+
+template<typename T>
+QueueIteratorConst<T> Queue<T>::begin() const {
+    return QueueIteratorConst<T>(c + ((front + 1) % size), c, size);
+}
+
+template<typename T>
+QueueIteratorConst<T> Queue<T>::end() const {
+    return QueueIteratorConst<T>(c + ((back + 1) % size), c, size);
 }
