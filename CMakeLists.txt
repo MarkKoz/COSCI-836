@@ -18,7 +18,7 @@ list(APPEND FLAGS_WARN
         -Wlogical-op
         -Wmissing-declarations
         -Wredundant-decls
-        -Wshadow
+        # -Wshadow
         -Woverloaded-virtual)
 list(APPEND FLAGS_STATIC
         -static-libgcc

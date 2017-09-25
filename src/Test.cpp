@@ -14,8 +14,8 @@ struct Passenger {
  * A container for the booked and waiting @c Queues of @c Passengers.
  */
 struct PassengerQueues {
-    Queue<Passenger> booked = Queue<Passenger>(3);
-    Queue<Passenger> waiting = Queue<Passenger>(3);
+    Queue<const Passenger*> booked = Queue<const Passenger*>(3);
+    Queue<const Passenger*> waiting = Queue<const Passenger*>(3);
 };
 
 /**
@@ -180,6 +180,18 @@ void showPassengers(PassengerQueues& queues) {
     if (queues.booked.empty()) {
         std::cout << "Queue is empty.\n";
     } else {
-        std::cout << queues.booked.getFront()->name << '\n';
+        std::cout << "\nBooked Passengers\n=================\n";
+
+        for (const Passenger* p : queues.booked) {
+            std::cout << p->name << '\n';
+        }
+
+        if (!queues.waiting.empty()) {
+            std::cout << "\nWaiting List\n=================\n";
+
+            for (const Passenger* p : queues.waiting) {
+                std::cout << p->name << '\n';
+            }
+        }
     }
 }
