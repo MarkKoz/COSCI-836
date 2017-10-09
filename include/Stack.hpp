@@ -4,6 +4,8 @@
 /**
  * An container which enforces last in first out (LIFO) stack behaviour.
  * Wraps around an array.
+ *
+ * @tparam  T   The type of the object to contain.
  */
 template <typename T>
 class Stack {
