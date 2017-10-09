@@ -1,40 +1,73 @@
+#include <algorithm>
 #include <stdexcept>
+#include <utility>
+
 #include "Stack.hpp"
 
-Stack::Stack() : topIndex(-1) {
-    std::fill(container, container + 21, 0);
+template<typename T>
+Stack<T>::Stack() : back(-1), size(21), c(new T[size]) {
+    // std::fill(c, c + size, T());
 }
 
-void Stack::push(const char data) {
+template<typename T>
+Stack<T>::~Stack() {
+    delete[] c;
+}
+
+template<typename T>
+void Stack<T>::push(const T& data) {
     if (full()) {
         throw std::logic_error("Cannot push onto a full stack.");
     }
 
-    ++topIndex;
-    container[topIndex] = data;
+    ++back;
+    c[back] = data;
 }
 
-void Stack::pop() {
+template<typename T>
+void Stack<T>::push(T&& data) {
+    if (full()) {
+        throw std::logic_error("Cannot push onto a full stack.");
+    }
+
+    ++back;
+    c[back] = std::move(data);
+}
+
+template<typename T>
+void Stack<T>::pop() {
     if (empty()) {
         throw std::logic_error("Cannot pop an empty stack.");
     }
 
-    container[topIndex] = 0;
-    --topIndex;
+    // c[back] = T();
+    --back;
 }
 
-const char& Stack::top() const {
+template<typename T>
+T& Stack<T>::top() {
     if (empty()) {
         throw std::logic_error("Cannot retrieve the top of an empty stack.");
     }
 
-    return container[topIndex];
+    return c[back];
 }
 
-bool Stack::empty() const {
-    return topIndex == -1;
+template<typename T>
+const T& Stack<T>::top() const {
+    if (empty()) {
+        throw std::logic_error("Cannot retrieve the top of an empty stack.");
+    }
+
+    return c[back];
 }
 
-bool Stack::full() const {
-    return topIndex == 21;
+template<typename T>
+bool Stack<T>::empty() const {
+    return back == -1;
+}
+
+template<typename T>
+bool Stack<T>::full() const {
+    return back == size;
 }

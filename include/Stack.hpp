@@ -2,24 +2,39 @@
 #define ASSIGNMENT_2_STACK_HPP
 
 /**
- * An adaptor class which wraps around an underlying container to enforce
- * last in first out (LIFO) stack behaviour.
+ * An container which enforces last in first out (LIFO) stack behaviour.
+ * Wraps around an array.
  */
+template <typename T>
 class Stack {
 public:
     /**
-     * Constructs an empty stack.
+     * Constructs an empty stack with a capacity of 21 elements.
      */
     Stack();
 
     /**
-     * Creates a new element at the top of the stack and assigns to it the given
-     * data.
+     * Deletes the underlying array on destruction.
+     */
+    ~Stack();
+
+    /**
+     * Creates a new element at the top of the stack and assigns to it the
+     * given data. The new element is initialised as a copy of @c data.
      *
      * @param   data       The data to insert.
      * @throws  std::logic_error    Thrown if the stack is full.
      */
-    void push(const char data);
+    void push(const T& data);
+
+    /**
+     * Creates a new element at the top of the stack and assigns to it the
+     * given data. @c data is moved into the new element.
+     *
+     * @param   data       The data to insert.
+     * @throws  std::logic_error    Thrown if the stack is full.
+     */
+    void push(T&& data);
 
     /**
      * Removes the top element.
@@ -29,31 +44,42 @@ public:
     void pop();
 
     /**
-     * Returns a constant reference to the data at the element at the top of
-     * the stack.
+     * Returns a reference to the data at the first element of the stack.
      *
-     * @return          The data at the top element.
+     * @return          The data at the first element.
      * @throws  std::logic_error    Thrown if the stack is empty.
      */
-    const char& top() const;
+    T& top();
 
     /**
-     * Checks whether the underlying container is empty.
+     * Returns a const-qualified reference to the data at first element of the
+     * stack.
+     *
+     * @return          The data at the first element.
+     * @throws  std::logic_error    Thrown if the stack is empty.
+     */
+    const T& top() const;
+
+    /**
+     * Checks whether the underlying array is empty.
      *
      * @return          @c true if empty; @c false otherwise.
      */
     bool empty() const;
 
     /**
-     * Checks whether the underlying container is full.
+     * Checks whether the underlying array is full.
      *
      * @return          @c true if full; @c false otherwise.
      */
     bool full() const;
 
 private:
-    int topIndex; // The index of the top element.
-    char container[21]; // The underlying container.
+    int back; // The index of the top element.
+    const int size; // Capacity of the underlying array.
+    T* c; // The underlying array.
 };
+
+#include "Stack.cpp"
 
 #endif
