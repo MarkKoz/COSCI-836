@@ -6,7 +6,7 @@ include_directories(include
 set(SOURCE_FILES
     include/Airline.hpp
     include/Queue.hpp
-    include/QueueIterators.hpp
+    include/QueueIterator.hpp
     src/Airline.cpp
     # src/Queue.cpp
     # src/QueueIterators.cpp

@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <stdexcept>
-#include <iostream>
 
 #include "Queue.hpp"
 
@@ -9,17 +8,23 @@ Queue<T>::Queue(const std::size_t size)
         : front(size),
           back(size),
           size(size + 1),
-          c(new T [this->size]) {
-    std::fill(c, c + this->size, Passenger());
+          c(new T[this->size]) {
+    // std::fill(c, c + this->size, T());
 }
 
 template<typename T>
 Queue<T>::~Queue() {
-    /*for (int i = 0; i < size; ++i) {
-        delete c[i];
-    }*/
-
     delete[] c;
+}
+
+template<typename T>
+void Queue<T>::push(T& data) {
+    if (full()){
+        throw std::logic_error("Cannot push onto a full queue.");
+    }
+
+    back = (back + 1) % size;
+    c[back] = data;
 }
 
 template<typename T>
@@ -29,7 +34,7 @@ void Queue<T>::push(T&& data) {
     }
 
     back = (back + 1) % size;
-    c[back] = std::forward<T>(data);
+    c[back] = data;
 }
 
 template<typename T>
@@ -39,8 +44,7 @@ void Queue<T>::pop() {
     }
 
     front = (front + 1) % size;
-    // delete c[front];
-    c[front] = Passenger();
+    // c[front] = T();
 }
 
 template<typename T>
@@ -59,21 +63,29 @@ bool Queue<T>::full() const {
 }
 
 template<typename T>
-QueueIterator<T> Queue<T>::begin() {
-    return QueueIterator<T>(c + ((front + 1) % size), c, size);
+typename Queue<T>::iterator Queue<T>::begin() {
+    if (empty()) {
+        return end();
+    }
+
+    return Queue<T>::iterator(c + ((front + 1) % size), c, size);
 }
 
 template<typename T>
-QueueIterator<T> Queue<T>::end() {
-    return QueueIterator<T>(c + ((back + 1) % size), c, size);
+typename Queue<T>::iterator Queue<T>::end() {
+    return Queue<T>::iterator(c + ((back + 1) % size), c, size);
 }
 
 template<typename T>
-QueueIteratorConst<T> Queue<T>::begin() const {
-    return QueueIteratorConst<T>(c + ((front + 1) % size), c, size);
+typename Queue<T>::const_iterator Queue<T>::begin() const {
+    if (empty()) {
+        return end();
+    }
+
+    return Queue<T>::const_iterator(c + ((front + 1) % size), c, size);
 }
 
 template<typename T>
-QueueIteratorConst<T> Queue<T>::end() const {
-    return QueueIteratorConst<T>(c + ((back + 1) % size), c, size);
+typename Queue<T>::const_iterator Queue<T>::end() const {
+    return Queue<T>::const_iterator(c + ((back + 1) % size), c, size);
 }

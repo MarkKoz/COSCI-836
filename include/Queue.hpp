@@ -3,9 +3,9 @@
 
 #include <cstddef>
 
-#include "QueueIterators.hpp"
+#include "QueueIterator.hpp"
 
-typedef std::string Passenger;
+using Passenger = std::string;
 
 /**
  * A container which enforces first in first out (FIFO) behaviour. Wraps
@@ -16,6 +16,9 @@ typedef std::string Passenger;
 template<typename T>
 class Queue {
 public:
+    using iterator = QueueIterator<T>;
+    using const_iterator = QueueIterator<const T>;
+
     /**
      * Constructs an empty queue.
      */
@@ -30,9 +33,18 @@ public:
 
     /**
      * Creates a new element at the back of the queue and assigns to it the
-     * given data.
+     * given data. The new element is initialised as a copy of @c data.
      *
-     * @param   data    A pointer to the data to insert.
+     * @param   data    The data to insert.
+     * @throws  std::logic_error    Thrown if the stack is full.
+     */
+    void push(T& data);
+
+    /**
+     * Creates a new element at the back of the queue and assigns to it the
+     * given data. @c data is moved into the new element.
+     *
+     * @param   data    The data to insert.
      * @throws  std::logic_error    Thrown if the stack is full.
      */
     void push(T&& data);
@@ -67,13 +79,42 @@ public:
      */
     bool full() const;
 
-    QueueIterator<T> begin();
+    /**
+     * Returns an iterator to the first element of the container.
+     *
+     * If the container is empty, the returned iterator will be equal to @c
+     * end().
+     *
+     * @return          An iterator to the first element.
+     */
+    iterator begin();
 
-    QueueIterator<T> end();
+    /**
+     * Returns an iterator to the element following the last element of
+     * the container (past-the-last).
+     *
+     * @return          An iterator to the past-the-last element.
+     */
+    iterator end();
 
-    QueueIteratorConst<T> begin() const;
+    /**
+     * Returns a const-qualified iterator to the first element of the container.
+     *
+     * If the container is empty, the returned iterator will be equal to @c
+     * end().
+     *
+     * @return          A const-qualified iterator to the first element.
+     */
+    const_iterator begin() const;
 
-    QueueIteratorConst<T> end() const;
+    /**
+     * Returns a const-qualified iterator to the element following the last
+     * element of the container (past-the-last).
+     *
+     * @return          A const-qualified iterator to the past-the-last element.
+     */
+    const_iterator end() const;
+
 private:
     std::size_t front; // Index of the element before the front-most element.
     std::size_t back; // Index of the back-most element.
