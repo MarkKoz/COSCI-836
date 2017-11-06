@@ -29,6 +29,8 @@ public:
      */
     QueueIterator(T* pos, T* c, const std::size_t size);
 
+    // TODO: Make const_iterator constructable from iterator.
+
     /**
      * @brief Unary prefix increment operator.
      *
