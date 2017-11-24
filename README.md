@@ -22,8 +22,9 @@ indicating this.
 Passengers should be moved from the secondary `Queue` to the primary one
 whenever space is made i.e. a passenger is removed from the primary `Queue`.
 
-See the [wiki](https://github.com/MarkKoz/COSCI-836/wiki/Module-4-—-Queue) for
-details on implementation requirements and sample outputs.
+See the wiki for details on
+[implementation requirements](https://github.com/MarkKoz/COSCI-836/wiki/Module-4-—-Queue)
+and [sample outputs](https://github.com/MarkKoz/COSCI-836/wiki/Assignment-3-—-Code-&-Outputs).
 
 ### File Structure
 Put the following files into a `ZIP` file:
