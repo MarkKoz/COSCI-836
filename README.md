@@ -16,6 +16,9 @@ An expression is valid if:
 * The right-most not-compared left character completes the pair for each right
 character.
 
+See the [wiki](https://github.com/MarkKoz/COSCI-836/wiki/Module-3-—-Stack) for
+details on implementation requirements.
+
 ### Sample Outputs
 ##### Valid Expressions
 ```
@@ -34,58 +37,14 @@ Enter an expression: [({)}]
 It's NOT a valid expression
 ```
 
-### Stack Class
-All class members must be `private` unless they need to be `public`.
-
-##### Fields
-| Declaration          | Description                                                 |
-|----------------------|-------------------------------------------------------------|
-| `int topIndex`       | Index of last element of `container` that holds a value.    |
-| `char container[21]` | The underlying container - holds the elements being pushed. |
-
-##### Methods
-| Declaration             | Description                                       |
-|-------------------------|---------------------------------------------------|
-| `void push(const char)` | Inserts an element at the top.                    |
-| `void pop()`            | Removes the top element.                          |
-| `char top()`            | Accesses the top element.                         |
-| `bool empty()`          | Checks whether the underlying container is empty. |
-| `bool full()`           | Checks whether the underlying container is full.  |
-
-### Test.cpp
-```cpp
-#include <cstring>
-#include <iostream>
-
-#include "Stack.hpp"
-
-bool isValid(Stack& stack, char* exp);
-
-int main(void) {
-    char exp[21];
-    Stack stack;
-
-    std::cout << "Enter an expression: ";
-    std::cin >> expression;
-
-    if (isValid(stack, exp)) {
-        std::cout << "\nIt's a valid expression.";
-    } else {
-        std::cout << "\nIt's NOT a valid expression.";
-    }
-}
-
-bool isValid(Stack& stack, char* exp) { }
-```
-
 ### File Structure
 Put the following files into a `ZIP` file:
 ```
-Stack.cpp
-Stack.hpp
+CStack.cpp
+CStack.h
 Test.cpp
 ```
 
 Original instructions can be found
 [here](https://www.genghiskhent.com/jak/836/assignments/836a2.html) or on the
-wiki.
+[wiki](https://github.com/MarkKoz/COSCI-836/wiki/Assignment-2).
