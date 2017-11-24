@@ -19,6 +19,9 @@ A date is valid if:
     * It is not required to account for some months having `28` to `30` days.
 * The year is in the range \[1900,2008].
 
+See the [wiki](https://github.com/MarkKoz/COSCI-836/wiki/Assignment-1) for
+details on implementation requirements.
+
 ### Sample Outputs
 ##### Valid Date
 ```
@@ -32,51 +35,14 @@ Enter month, day and year separated by spaces: 13 1 2000
 9/2/2008
 ```
 
-### Date Class
-All class members must be `private` unless they need to be `public`.
-
-##### Fields
-| Declaration | Description                            |
-|-------------|----------------------------------------|
-| `int month` | Number corresponding to month of year. |
-| `int day`   | Number corresponding to day of month.  |
-| `int year`  | Number corresponding to year.          |
-
-##### Methods
-| Declaration               | Description                                                                                                                                    |
-|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| `void set(int, int, int)` | Assigns the value of each parameter to the month, date and year member variables respectively unless the date is not valid (see next section). |
-| `void print()`            | Outputs the date in the format `m/d/yyy`, such as `9/2/2008`.                                                                                  |
-
-### Test.cpp
-Do not modify the code except for replacing the comments with their respective
-method calls.
-
-```cpp
-#include <iostream>
-
-#include "Date.hpp"
-
-int main() {
-    Date d1;
-    int m, d, y;
-
-    std::cout << "Enter month, day and year separated by spaces: ";
-    std::cin >> m >> d >> y;
-
-    // Call Date.set.
-    // Call Date.print.
-}
-```
-
 ### File Structure
 Put the following files into a `ZIP` file:
 ```
 Date.cpp
-Date.hpp
+Date.h
 Test.cpp
 ```
 
 Original instructions can be found
 [here](https://www.genghiskhent.com/jak/836/assignments/836a1.html) or on the
-wiki.
+[wiki](https://github.com/MarkKoz/COSCI-836/wiki/Assignment-1).

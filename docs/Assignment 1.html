@@ -1,8 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-    <TITLE>CSIT 836 Assignment #1</TITLE>
-    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Language" content="en-us">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CSIT 836 Assignment #1</title>
+    <base target="_blank">
     <style type="text/css">
         .header {
             width: 100%;
@@ -25,12 +27,12 @@
         }
 
         .header td:nth-child(1) {
-            width: 43%;
+            width: 50%;
             border-right-width: 0.75pt;
         }
 
         .header td:nth-child(2) {
-            width: 56%;
+            width: 50%;
             border-left: medium none;
         }
 
@@ -39,41 +41,44 @@
             margin-bottom: 0;
         }
 
+        table:not(.header) {
+            border: 1px outset #000000;
+            border-spacing: 2px;
+        }
+
+        table:not(.header) caption {
+            font-weight: bold;
+        }
+
+        table:not(.header) thead tr {
+            background-color: #c0c0c0;
+        }
+
+        table:not(.header) tbody th {
+            background-color: #eeeeee;
+            text-align: center;
+        }
+
+        table:not(.header) th,
+        table:not(.header) td {
+            padding: 0.25em;
+            border: 1px inset #000000;
+        }
+
+        table:not(.header) th {
+            text-align: left;
+        }
+
         .right {
             text-align: right;
         }
 
-        .style1 {
-            border-style: solid;
-            border-width: 1px;
-        }
-
-        .style3 {
-            font-weight: bold;
-            text-decoration: underline;
-            margin-top: 0px;
-            margin-bottom: 0px;
-        }
-
-        .style4 {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
-        .style5 {
-            font-size: small;
-        }
-
-        .style6 {
-            color: #000000;
-        }
-
-        .style7 {
+        h4 {
             text-decoration: underline;
         }
     </style>
-</HEAD>
-<BODY>
+</head>
+<body>
 <table class="header">
     <tr>
         <td>
@@ -86,353 +91,212 @@
         </td>
     </tr>
 </table>
-<P><u><b>Introduction</b></u></P>
-<P>"Abandon all hope, ye who enter here." History tells us these words were
+
+<h4>Introduction</h4>
+<p>
+    "Abandon all hope, ye who enter here." History tells us these words were
     inscribed above the entrance to the Data Structures class at ancient Val E
     Community College, where an evil computer science instructor named Genghis
-    Khent
-    delighted in tormenting his Data Structures students with apparently
-    unsolvable
-    questions on data structures. </P>
-<P>Genghis Khent's
-    social life was typical for a computer programmer; non-existent. He wanted a
-    date. Since a C++ class can represent anything in the real world, he ordered
-    one
-    of his
-    <span style="letter-spacing:-.15pt">favorite sources of free C++ programming
-labor, his CSIT 836 students, to write </span>a class to represent a date.
-    Unfortunately for Genghis Khent and his social life, his students
-    misunderstood, and wrote a class that
-    represented a calendar date.</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
+    Khent delighted in tormenting his Data Structures students with apparently
+    unsolvable questions on data structures.
+</p>
+<p>
+    Genghis Khent's social life was typical for a computer programmer;
+    non-existent. He wanted a date. Since a C++ class can represent anything in
+    the real world, he ordered one of his favorite sources of free C++
+    programming labor, his CSIT 836 students, to write a class to represent a
+    date. Unfortunately for Genghis Khent and his social life, his students
+    misunderstood, and wrote a class that represented a calendar date.
+</p>
+<p>
     Unfortunately for you, history has repeated itself. A descendant of Genghis
-    Khent teaches at Valley College in the CSIT program.&nbsp; You do not know
-    the
+    Khent teaches at Valley College in the CSIT program. You do not know the
     identity of this descendant because the descendant has cleverly changed his
-    last
-    name just enough to hide his ancestry, but soon (like now) you will have to
-    write the same program.&nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    <u><b>Date Class Member Variables</b></u></P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    <br>
-    The following table identifies and describes the
-    purpose of each <i>Date </i>class member variable:<br>
-    &nbsp;</P>
-<div align="left">
-    <table border="1" id="table1" bordercolor="#000000" width="379"
-           style="width: 586px">
-        <tr>
-            <td width="44" bgcolor="#C0C0C0">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    <b>Name&nbsp;&nbsp; </b></P></td>
-            <td width="71" bgcolor="#C0C0C0">
-                <b>Data Type</b></td>
-            <td bgcolor="#C0C0C0" style="width: 472px">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    <b>Purpose</b></P></td>
-        </tr>
-        <tr>
-            <td width="44" align="left" valign="bottom">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    month&nbsp;&nbsp; </P></td>
-            <td width="71" align="left" valign="bottom">
-                int
-            </td>
-            <td align="left" valign="bottom" style="width: 472px">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    Number corresponding to month of year (e.g., 1-12)</P></td>
-        </tr>
-        <tr>
-            <td width="44" align="left" valign="bottom">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    day&nbsp;&nbsp; </P></td>
-            <td width="71" align="left" valign="bottom">
-                int
-            </td>
-            <td align="left" valign="bottom" style="width: 472px">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    Number corresponding to day of month (e.g, 1 to 28-31)</P>
-            </td>
-        </tr>
-        <tr>
-            <td width="44" align="left" valign="bottom">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    year&nbsp;&nbsp; </P></td>
-            <td width="71" align="left" valign="bottom">
-                int
-            </td>
-            <td align="left" valign="bottom" style="width: 472px">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    Number corresponding to year</P></td>
-        </tr>
-    </table>
-</div>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    <br>
-    All of these class member variables are <i>private</i>. You <u>cannot</u>
-    add to
-    or otherwise change these class member variables. </P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    <u><b>Date Class Member Functions</b></u></P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    The following table identifies and describes the
-    purpose of each <i>Date </i>class member function:</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<div align="left">
-    <table id="table2" bordercolor="#000000" class="style1"
-           style="width: 895px">
-        <tr>
-            <td bgcolor="#C0C0C0" style="width: 79px">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    <b>Name&nbsp;&nbsp; </b></P></td>
-            <td bgcolor="#C0C0C0" style="width: 121px">
-                <strong>Return Value</strong></td>
-            <td bgcolor="#C0C0C0" style="width: 106px">
-                <strong>Parameters</strong></td>
-            <td bgcolor="#C0C0C0" style="width: 664px">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    <b>Purpose</b></P></td>
-        </tr>
-        <tr>
-            <td align="left" valign="bottom" style="width: 79px">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    setDate&nbsp;&nbsp; </P></td>
-            <td align="left" valign="bottom" style="width: 121px">
-                void
-            </td>
-            <td align="left" valign="bottom" style="width: 106px">
-                3 integers
-            </td>
-            <td align="left" valign="bottom" style="width: 664px">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    Assigns the value of each parameter to the month, date and
-                    year
-                    member variables respectively unless the date is not valid
-                    (see next
-                    section)</P></td>
-        </tr>
-        <tr>
-            <td align="left" valign="bottom" style="width: 79px">
-                <P class="MsoNormal"
-                   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-                    printDate&nbsp;&nbsp; </P></td>
-            <td align="left" valign="bottom" style="width: 121px">
-                void
-            </td>
-            <td align="left" valign="bottom" style="width: 106px">
-                None
-            </td>
-            <td align="left" valign="bottom" style="width: 664px">
-                Outputs the date in the format month/day/year, such as 9/2/2008
-            </td>
-        </tr>
-    </table>
-</div>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="style3"
-   style="mso-hyphenate: none; tab-stops: -.5in">
-    Driver File</P>
-<font SIZE="2">
-    <p class="style4">&nbsp;</p>
-</font>
-<p class="style4"><span class="style5">The code for the driver file is given
-below except of the last two statements. You need to call <em>setDate</em> and
-<em>printDate</em>, but you are not told exactly how. You can't change the code
-for the driver file except for properly calling <em>setDate</em> and <em>
-printDate </em>in the last two statements.</span><font SIZE="2">&nbsp;</p>
-<p class="style4">&nbsp;</p>
-<p class="style4">#include<span class="style6"> </span></font>
-    <font SIZE="2" COLOR="#a31515">&lt;<span class="style6">iostream&gt;</span>
+    last name just enough to hide his ancestry, but soon (like now) you will
+    have to write the same program.
 </p>
-</font><font SIZE="2">
-    <p class="style4">using namespace std;</p>
-    <p class="style4">#include<span class="style6"> </span></font>
-<font SIZE="2" COLOR="#a31515">&quot;<span
-        class="style6">date.h&quot;</span></p>
-</font><font SIZE="2">
-    <p class="style4">int main()</p>
-    <p class="style4">{</p>
-    <p class="style4">Date d1;</p>
-    <p class="style4">int m, d, y;</p>
-    <p class="style4">cout &lt;&lt; &quot;Enter month, day and year separated by
-        spaces: &quot;;</p>
-    <p class="style4">cin &gt;&gt; m &gt;&gt; d &gt;&gt; y;</p>
-    <p class="style4"><strong>// call <em>setDate</em></strong></p>
-    <p class="style4"><strong>// call <em>printDate<br>
-    </em></strong>return 0;</p>
-    <p class="style4">}</p>
-</font>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    <u><b>What the Program Does</b></u></P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    The user is prompted to enter a month, day and year. If the date is valid,
-    then
-    the <em>setDate</em> member function assigns the month, day and year inputs
-    to
-    the <em>Date</em> instance. If the date is not valid, then the values 9, 2
-    and
-    2008 are assigned respectively to the <em>month</em>, <em>day</em> and <em>year</em>
-    member variables of the <em>Date</em> instance. The <em>printDate</em>
-    function
-    then outputs the <em>Date</em> instance in the format month/day/year.</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    A date is valid if:</P>
-<ul>
-    <li>
-        <P class="MsoNormal"
-           style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-            The month is between 1 and 12.</P></li>
-    <li>
-        <P class="MsoNormal"
-           style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-            The day is between 1 and 31. Yes, I know, for some months the
-            maximum
-            number of days may be less than 31 (between 28 and 30), but at LAVC,
-            our philosophy is
-            &quot;close enough for government work.&quot; </P></li>
-    <li>
-        <P class="MsoNormal"
-           style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-            The year is between 1900 and 2008. </P></li>
-</ul>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    <u><b>Sample Runs</b></u></P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    <b>Sample #1 - Valid Date</b></P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    Enter month, day and year separated by spaces: 9 17 1921<br>
-    9/17/1921<br>
-    &nbsp;</P>
-<p class="MsoNormal"
-   style="mso-hyphenate: none; tab-stops: -.5in; margin-top: 0px; margin-bottom: 0px">
-    <b>Sample #2 - Invalid Date (Default date printed)</b></p>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    Enter month, day and year separated by spaces: 13 1 2000<br>
-    9/2/2008</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    <br>
-</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    <u><b>Multiple Files</b></u></P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    Use multiple files, separating the class declaration, class implementation
-    and
-    driver into separate files, as in Module #2. Thus, your project will have
-    three files,
-    <i>date.h</i> (the declaration file for the
-    <i>Date</i> class), <i>date.cpp</i> (the implementation file for the
-    <i>Date</i> class) and <i>test.cpp</i> (the “driver” file which tests the
-    class).&nbsp;
-    All class members (variables and functions) must be <i>private</i> unless
-    they
-    need to be <i>public</i>.</P>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
-<p style="margin-top: 0; margin-bottom: 0"><u><b>What You Turn In</b></u></p>
-<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
-<p style="margin-top: 0; margin-bottom: 0">Turn in to CANVAS a <i>zip</i> file
-    of <i>date.h</i>,<i> date.cpp</i> and
-    <i>test.cpp</i>. I do <span class="style7"><strong>not</strong></span> need
-    or want the other files that Visual C++ generates<font
-            face="Times New Roman">—just
-        the code you wrote—as I can just include your files in a project I
-        create. You
-        also may include in your <i>zip</i> file a <i>pleaformercy.txt</i> file
-        with any
-        comments or message you want to give to me.</font></p>
-<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
-<p style="margin-top: 0; margin-bottom: 0"><u><b><font face="Times New Roman">
-    Need Help?</font></b></u></p>
-<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
-<p style="margin-top: 0; margin-bottom: 0"><font face="Times New Roman">You bet
-    you do! You're a student of Genghis Khent—err, Jeff Kent. Forget you heard
-    that.</font></p>
-<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
-<p style="margin-top: 0; margin-bottom: 0"><font face="Times New Roman">You'll
-    find under <i>Modules</i> on the class' CANVAS website <a target="_blank"
-                                                              href="../handouts/classes.html">Introduction
-        to Classes</a> and </font><span id="viewmoduleform:title"
-                                        class="bold style6"><a target="_blank"
-                                                               href="../handouts/multifile.html">Creating a Multi-File
-		Project</a></span><font face="Times New Roman">. They should
-    help you a lot. Please also review t</font>he sections of CSIT 839 textbook
-    referenced in those modules<font face="Times New Roman"> and Chapter 2 of
-        the textbook</font>.</p>
-<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
-<p style="margin-top: 0; margin-bottom: 0"><font face="Times New Roman">You also
-    can post questions (or help others who post questions) in the discussion
-    forum on
-    this class' CANVAS
-    website. Remember, </font><span class="genmed">you can post a few lines of code
-to provide context to your question, but please don't post all your code.</span>
-</p>
-<P class="MsoNormal"
-   style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; mso-hyphenate: none; tab-stops: -.5in">
-    &nbsp;</P>
 
-</BODY>
-</HTML>
+<h4>Date Class Member Variables</h4>
+<p>
+    The following table identifies and describes the
+    purpose of each <i>Date</i> class member variable:
+</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Data Type</th>
+        <th>Purpose</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>month</td>
+        <td>int</td>
+        <td>Number corresponding to month of year (e.g., 1-12)</td>
+    </tr>
+    <tr>
+        <td>day</td>
+        <td>int</td>
+        <td>Number corresponding to day of month (e.g, 1 to 28-31)</td>
+    </tr>
+    <tr>
+        <td>year</td>
+        <td>int</td>
+        <td>Number corresponding to year</td>
+    </tr>
+    </tbody>
+</table>
+
+<p>
+    All of these class member variables are <i>private</i>. You <u>cannot</u>
+    add to or otherwise change these class member variables.
+</p>
+
+<h4>Date Class Member Functions</h4>
+<p>
+    The following table identifies and describes the purpose of each <i>Date</i>
+    class member function:
+</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Return Value</th>
+        <th>Parameters</th>
+        <th>Purpose</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>setDate</td>
+        <td>void</td>
+        <td>3 integers</td>
+        <td>
+            Assigns the value of each parameter to the month, date and year
+            member variables respectively unless the date is not valid (see next
+            section)
+        </td>
+    </tr>
+    <tr>
+        <td>printDate</td>
+        <td>void</td>
+        <td>None</td>
+        <td>Outputs the date in the format month/day/year, such as 9/2/2008</td>
+    </tr>
+    </tbody>
+</table>
+
+<h4>Driver File</h4>
+<p>
+    The code for the driver file is given below except of the last two
+    statements. You need to call <i>setDate</i> and <i>printDate</i>, but you
+    are not told exactly how. You can't change the code for the driver file
+    except for properly calling <i>setDate</i> and <i></i> in the last two
+    statements.
+</p>
+<pre>
+#include &lt;iostream>
+
+#include "date.h"
+
+using namespace std;
+
+int main() {
+    Date d1;
+    int m, d, y;
+
+    cout << "Enter month, day and year separated by spaces: ";
+    cin >> m >> d >> y;
+
+    // call setDate
+    // call printDate
+
+    return 0;
+}
+</pre>
+
+<h4>What the Program Does</h4>
+<p>
+    The user is prompted to enter a month, day and year. If the date is valid,
+    then the <i>setDate</i> member function assigns the month, day and year
+    inputs to the <i>Date</i> instance. If the date is not valid, then the
+    values 9, 2 and 2008 are assigned respectively to the <i>month</i>,
+    <i>day</i> and <i>year</i> member variables of the <i>Date</i> instance.
+    The <i>printDate</i> function then outputs the <i>Date</i> instance in
+    the format month/day/year.
+</p>
+<p>A date is valid if:</p>
+<ul>
+    <li>The month is between 1 and 12.</li>
+    <li>
+        The day is between 1 and 31. Yes, I know, for some months the maximum
+        number of days may be less than 31 (between 28 and 30), but at LAVC,
+        our philosophy is "close enough for government work."
+    </li>
+    <li>The year is between 1900 and 2008.</li>
+</ul>
+
+<h4>Sample Runs</h4>
+<h4 style="text-decoration: none;">Sample #1 - Valid Date</h4>
+<pre>
+Enter month, day and year separated by spaces: 9 17 1921
+9/17/1921
+</pre>
+
+<h4 style="text-decoration: none;">
+    Sample #2 - Invalid Date (Default date printed)
+</h4>
+<pre>
+Enter month, day and year separated by spaces: 13 1 2000
+9/2/2008
+</pre>
+
+<h4>Multiple Files</h4>
+<p>
+    Use multiple files, separating the class declaration, class implementation
+    and driver into separate files, as in Module #2. Thus, your project will
+    have three files, <i>date.h</i> (the declaration file for the <i>Date</i>
+    class), <i>date.cpp</i> (the implementation file for the <i>Date</i>
+    class) and <i>test.cpp</i> (the “driver” file which tests the
+    class). All class members (variables and functions) must be <i>private</i>
+    unless they need to be <i>public</i>.
+</p>
+
+<h4>What You Turn In</h4>
+<p>
+    Turn in to CANVAS a <i>zip</i> file of <i>date.h</i>, <i>date.cpp</i> and
+    <i>test.cpp</i>. I do <u><b>not</b></u> need or want the other files that
+    Visual C++ generates—just the code you wrote—as I can just include your
+    files in a project I create. You also may include in your <i>zip</i> file
+    a <i>pleaformercy.txt</i> file with any comments or message you want to
+    give to me.
+</p>
+
+<h4>Need Help?</h4>
+<p>
+    You bet you do! You're a student of Genghis Khent—err, Jeff Kent. Forget
+    you heard that.
+</p>
+<p>
+    You'll find under <i>Modules</i> on the class' CANVAS website
+    <a href="https://www.genghiskhent.com/jak/836/handouts/classes.html">
+        Introduction to Classes
+    </a>
+    and
+    <a href="https://www.genghiskhent.com/jak/836/handouts/multifile.html">
+        Creating a Multi-File Project
+    </a>
+    . They should help you a lot. Please also review the sections of CSIT 839
+    textbook referenced in those modules and Chapter 2 of the textbook.
+</p>
+<p>
+    You also can post questions (or help others who post questions) in the
+    discussion forum on this class' CANVAS website. Remember, you can post a few
+    lines of code to provide context to your question, but please don't post all
+    your code.
+</p>
+</body>
+</html>
