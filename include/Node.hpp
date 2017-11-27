@@ -1,8 +1,6 @@
 #ifndef ASSIGNMENT_4_NODE_HPP
 #define ASSIGNMENT_4_NODE_HPP
 
-#include <type_traits>
-
 class NodeBase {
 public:
     NodeBase() = default;
@@ -13,18 +11,22 @@ public:
 template<typename T>
 class Node : public NodeBase {
 public:
-    Node() = default;
+    explicit Node(const T& val) : val(val) { }
+
+    explicit Node(T&& val) : val(std::move(val)) { }
+
+    ~Node() = default;
 
     T* data() {
-        return reinterpret_cast<T*>(&storage);
+        return std::addressof(val);
     }
 
     const T* data() const {
-        return reinterpret_cast<const T*>(&storage);
+        return std::addressof(val);
     }
 
 private:
-    typename std::aligned_storage<sizeof(T), std::alignment_of<T>::value>::type storage;
+    T val;
 };
 
 #endif

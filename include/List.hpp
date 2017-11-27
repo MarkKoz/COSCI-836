@@ -2,7 +2,6 @@
 #define LIST_HPP
 
 #include <memory>
-#include <new>
 #include <type_traits>
 #include <utility>
 
@@ -59,10 +58,7 @@ public:
             Node<T>* node = curr;
             // Get the next node before the current node is deleted.
             curr = static_cast<Node<T>*>(curr->next);
-
-            node->data()->~T(); // Destroy the data.
-            node->~Node<T>(); // Destroy the node.
-            ::operator delete(node); // Deallocate memory.
+            delete node;
         }
 
         head.next = nullptr;
@@ -145,18 +141,7 @@ protected:
 private:
     template<typename... Args>
     Node<T>* createNode(Args&& ... args) {
-        // Allocates memory for 1 node.
-        Node<T>* node = static_cast<Node<T>*>(::operator new(sizeof(Node<T>)));
-
-        try {
-            ::new(static_cast<void*>(node)) Node<T>;
-            ::new(static_cast<void*>(node->data())) T(std::forward<Args>(args)...);
-        } catch(...) {
-            ::operator delete(node);
-            throw;
-        }
-
-        return node;
+        return new Node<T>(T(std::forward<Args>(args)...));;
     }
 
     template<typename Iter>

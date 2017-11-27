@@ -47,6 +47,8 @@ public:
         return !operator==(rhs);
     }
 
+    // Ideally this should be private, but emplaceAfter needs access.
+    // TODO: Determine a better implementation.
     NodeBase* node;
 };
 
