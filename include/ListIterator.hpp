@@ -3,9 +3,9 @@
 
 #include <cstddef>
 #include <iterator>
-#include <type_traits>
+#include <memory>
 
-#include "List.hpp"
+#include "Node.hpp"
 
 template <typename T>
 class ListIterator : public std::iterator<std::input_iterator_tag,
@@ -14,9 +14,9 @@ class ListIterator : public std::iterator<std::input_iterator_tag,
                                           T*,
                                           T&> {
 public:
-    ListIterator(T* pos, T* c, const std::size_t size) {
+    ListIterator() : node() { }
 
-    }
+    explicit ListIterator(NodeBase* n) : node(n) { }
 
     ListIterator& operator++() {
         node = node->next;
