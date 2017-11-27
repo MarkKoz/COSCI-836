@@ -4,9 +4,9 @@ project(Assignment_4)
 include_directories(include
                     src)
 set(SOURCE_FILES
-    include/PersonList.hpp
+    include/List.hpp
     include/ListIterator.hpp
-    src/PersonList.cpp
+    src/List.cpp
     src/Test.cpp)
 add_executable(Assignment_4 ${SOURCE_FILES})
 

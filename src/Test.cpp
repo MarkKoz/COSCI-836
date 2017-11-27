@@ -3,7 +3,7 @@
 #include <string>
 #include <utility>
 
-#include "PersonList.hpp"
+#include "List.hpp"
 
 /**
  * Represents a menu selection.
