@@ -36,10 +36,23 @@ int main() {
 
         switch (selection) {
             case Selection::ADD:
-                // add();
+                std::string name, contribution;
+
+                std::cout << "Enter the person's name: ";
+                std::getline(std::cin, name);
+
+                std::cout << "Enter the person's contribution: ";
+                std::getline(std::cin, contribution);
+
+                const int bribe = std::stoi(contribution);
+
                 break;
             case Selection::SHOW:
                 // show();
+
+                // Print as a table: position #, name, bribe
+                // Find the max width of each column in the data set
+                // and set all rows column's to those widths.
                 break;
             default:
                 break;
@@ -50,11 +63,11 @@ int main() {
 }
 
 Selection menu() {
-    std::cout << "Menu\n";
-    std::cout << "====================\n";
+    std::cout << "     Menu\n";
+    std::cout << "==============\n";
     std::cout << "1. Add Student\n";
     std::cout << "2. Show List\n";
-    std::cout << "3. Exit\n";
+    std::cout << "3. Exit\n\n";
     std::cout << "Enter a selection: ";
 
     std::string selection;

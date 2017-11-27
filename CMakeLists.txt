@@ -5,6 +5,7 @@ include_directories(include
                     src)
 set(SOURCE_FILES
     include/PersonList.hpp
+    include/ListIterator.hpp
     src/PersonList.cpp
     src/Test.cpp)
 add_executable(Assignment_4 ${SOURCE_FILES})
