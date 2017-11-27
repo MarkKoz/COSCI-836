@@ -1,3 +1,6 @@
+#ifndef LIST_HPP
+#define LIST_HPP
+
 #include <type_traits>
 #include <memory>
 #include <new>
@@ -37,3 +40,5 @@ public:
 private:
     NodeBase* head;
 };
+
+#endif
