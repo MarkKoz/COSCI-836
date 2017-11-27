@@ -18,13 +18,13 @@ public:
 
     explicit ListIterator(NodeBase* n) : node(n) { }
 
-    ListIterator& operator++() {
+    ListIterator<T>& operator++() {
         node = node->next;
 
         return *this;
     }
 
-    ListIterator& operator++(int) {
+    ListIterator<T>& operator++(int) {
         ListIterator<T> it(*this);
         operator++();
 
@@ -32,18 +32,18 @@ public:
     }
 
     T& operator*() const {
-        return std::addressof(static_cast<Node*>(node)->data());
+        return *static_cast<Node<T>*>(node)->data();
     }
 
     T* operator->() const {
-        return static_cast<Node*>(node)->data();
+        return static_cast<Node<T>*>(node)->data();
     }
 
-    bool operator==(const ListIterator& rhs) const {
+    bool operator==(const ListIterator<T>& rhs) const {
         return node == rhs.node;
     }
 
-    bool operator!=(const ListIterator& rhs) const {
+    bool operator!=(const ListIterator<T>& rhs) const {
         return !operator==(rhs);
     }
 
@@ -59,18 +59,18 @@ class ListIteratorConst : public std::iterator<std::forward_iterator_tag,
 public:
     ListIteratorConst() : node() { }
 
-    explicit ListIteratorConst(const ListIterator iter) : node(iter.node) { }
+    explicit ListIteratorConst(const ListIterator<T> iter) : node(iter.node) { }
 
     explicit ListIteratorConst(NodeBase* n) : node(n) { }
 
 
-    ListIteratorConst& operator++() {
+    ListIteratorConst<T>& operator++() {
         node = node->next;
 
         return *this;
     }
 
-    ListIteratorConst& operator++(int) {
+    ListIteratorConst<T>& operator++(int) {
         ListIteratorConst<T> it(*this);
         operator++();
 
@@ -78,18 +78,18 @@ public:
     }
 
     const T& operator*() const {
-        return std::addressof(static_cast<Node*>(node)->data());
+        return *static_cast<Node<T>*>(node)->data();
     }
 
     const T* operator->() const {
-        return static_cast<Node*>(node)->data();
+        return static_cast<Node<T>*>(node)->data();
     }
 
-    bool operator==(const ListIteratorConst& rhs) const {
+    bool operator==(const ListIteratorConst<T>& rhs) const {
         return node == rhs.node;
     }
 
-    bool operator!=(const ListIteratorConst& rhs) const {
+    bool operator!=(const ListIteratorConst<T>& rhs) const {
         return !operator==(rhs);
     }
 
