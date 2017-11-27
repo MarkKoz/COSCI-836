@@ -11,7 +11,7 @@ public:
 };
 
 template<typename T>
-class Node : NodeBase {
+class Node : public NodeBase {
 public:
     Node() = default;
 

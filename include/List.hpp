@@ -14,7 +14,7 @@ template<typename T>
 class List {
 public:
     using iterator = ListIterator<T>;
-    using const_iterator = ListIterator<const T>;
+    using const_iterator = ListIteratorConst<T>;
 
     /**
      * Default constructor. Constructs an empty List.
