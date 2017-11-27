@@ -3,7 +3,7 @@
 #include <string>
 #include <utility>
 
-#include "List.hpp"
+#include "PersonList.hpp"
 
 /**
  * Represents a menu selection.
@@ -29,6 +29,7 @@ enum Selection {
 Selection menu();
 
 int main() {
+    PersonList list;
     Selection selection;
 
     while (selection != Selection::EXIT) {
@@ -36,23 +37,10 @@ int main() {
 
         switch (selection) {
             case Selection::ADD:
-                std::string name, contribution;
-
-                std::cout << "Enter the person's name: ";
-                std::getline(std::cin, name);
-
-                std::cout << "Enter the person's contribution: ";
-                std::getline(std::cin, contribution);
-
-                const int bribe = std::stoi(contribution);
-
+                list.add();
                 break;
             case Selection::SHOW:
-                // show();
-
-                // Print as a table: position #, name, bribe
-                // Find the max width of each column in the data set
-                // and set all rows column's to those widths.
+                list.show();
                 break;
             default:
                 break;

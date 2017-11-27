@@ -7,6 +7,7 @@ set(SOURCE_FILES
     include/List.hpp
     include/ListIterator.hpp
     include/Node.hpp
+    include/PersonList.hpp
     src/List.cpp
     src/Test.cpp)
 add_executable(Assignment_4 ${SOURCE_FILES})

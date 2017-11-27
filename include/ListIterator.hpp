@@ -61,7 +61,7 @@ public:
 
     explicit ListIteratorConst(const ListIterator<T> iter) : node(iter.node) { }
 
-    explicit ListIteratorConst(NodeBase* n) : node(n) { }
+    explicit ListIteratorConst(const NodeBase* n) : node(n) { }
 
 
     ListIteratorConst<T>& operator++() {
@@ -78,11 +78,11 @@ public:
     }
 
     const T& operator*() const {
-        return *static_cast<Node<T>*>(node)->data();
+        return *static_cast<const Node<T>*>(node)->data();
     }
 
     const T* operator->() const {
-        return static_cast<Node<T>*>(node)->data();
+        return static_cast<const Node<T>*>(node)->data();
     }
 
     bool operator==(const ListIteratorConst<T>& rhs) const {

@@ -101,8 +101,8 @@ public:
      * @return
      */
     template<typename... Args>
-    iterator emplaceAfter(const_iterator pos, Args&&... args) {
-        Node<T>* nodePos = const_cast<Node<T>*>(pos.node);
+    iterator emplaceAfter(const_iterator pos, Args&& ... args) {
+        NodeBase* nodePos = const_cast<NodeBase*>(pos.node);
         Node<T>* nodeNew = createNode(std::forward<Args>(args)...);
 
         nodeNew->next = nodePos->next;
