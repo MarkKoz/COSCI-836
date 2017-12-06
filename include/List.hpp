@@ -1,8 +1,7 @@
 #ifndef LIST_HPP
 #define LIST_HPP
 
-#include <memory>
-#include <type_traits>
+#include <initializer_list>
 #include <utility>
 
 #include "ListIterator.hpp"
@@ -15,12 +14,14 @@ public:
     using const_iterator = ListIteratorConst<T>;
 
     /**
-     * Default constructor. Constructs an empty List.
+     * @brief Default constructor.
+     *
+     * Constructs an empty List.
      */
     List() : head() { }
 
     /**
-     * Copy constructor.
+     * @brief Copy constructor.
      *
      * @param   list
      */
@@ -29,7 +30,7 @@ public:
     }
 
     /**
-     * Move constructor.
+     * @brief Move constructor.
      *
      * @param   list
      */
@@ -39,8 +40,10 @@ public:
     }
 
     /**
-     * Initialiser list constructor. Constructs a List containing copies of
-     * the elements in the std::initializer_list.
+     * @brief Initialiser list constructor.
+     *
+     * Constructs a List containing copies of the elements in the
+     * @c std::initializer_list.
      *
      * @param   init
      */
@@ -49,7 +52,7 @@ public:
     }
 
     /**
-     * Destructor.
+     * @brief Destructor.
      */
     ~List() {
         Node<T>* curr = static_cast<Node<T>*>(head.next);
@@ -141,7 +144,7 @@ protected:
 private:
     template<typename... Args>
     Node<T>* createNode(Args&& ... args) {
-        return new Node<T>(T(std::forward<Args>(args)...));;
+        return new Node<T>(T(std::forward<Args>(args)...));
     }
 
     template<typename Iter>

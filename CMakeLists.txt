@@ -9,6 +9,7 @@ set(SOURCE_FILES
     include/Node.hpp
     include/PersonList.hpp
     src/List.cpp
+    src/PersonList.cpp
     src/Test.cpp)
 add_executable(Assignment_4 ${SOURCE_FILES})
 
@@ -22,7 +23,7 @@ list(APPEND FLAGS_WARN
      -Wlogical-op
      -Wmissing-declarations
      -Wredundant-decls
-     -Wshadow
+     # -Wshadow
      -Woverloaded-virtual)
 list(APPEND FLAGS_STATIC
      -static-libgcc

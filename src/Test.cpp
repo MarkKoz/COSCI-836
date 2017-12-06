@@ -32,7 +32,7 @@ int main() {
     PersonList list;
     Selection selection;
 
-    while (selection != Selection::EXIT) {
+    do {
         selection = menu();
 
         switch (selection) {
@@ -47,7 +47,7 @@ int main() {
         }
 
         std::cout << '\n';
-    }
+    } while (selection != Selection::EXIT);
 }
 
 Selection menu() {
