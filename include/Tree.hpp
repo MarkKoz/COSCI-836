@@ -34,9 +34,9 @@ private:
 /**
  * @brief A binary search tree container.
  *
- * Each parent node has two child nodes, left and right. The value of the
- * parent is greater than or equal to the left node's value and less than or
- * equal to the right node's value.
+ * Each parent node can have up to two child nodes, left and right. The value of
+ * the parent is greater than the left node's value and less than the right
+ * node's value.
  *
  * @tparam  T       The type of the object to contain.
  */
@@ -55,41 +55,57 @@ public:
 
     /**
      * Constructs a new @c Node with a copy of @c value and inserts the node
-     * into the container.
+     * into the container. If @c value already exists in the container, no
+     * insertion takes place.
      *
      * @param   value   The data to store in the container.
+     * @return          @c true if the insertion was successful; @c false
+     *                  otherwise.
      */
-    void insert(const T& value) {
+    bool insert(const T& value) {
         return emplace(value);
     }
 
     /**
      * Moves @c value into a new @c Node and inserts the node into the
-     * container.
+     * container. If @c value already exists in the container, no
+     * insertion takes place.
      *
      * @param   value   The data to store in the container.
+     * @return          @c true if the insertion was successful; @c false
+     *                  otherwise.
      */
-    void insert(T&& value) {
+    bool insert(T&& value) {
         return emplace(std::move(value));
     }
 
     /**
      * Constructs an object using the arguments @c args, constructs a new
-     * @c Node with that object, and inserts the node into the container.
+     * @c Node with that object, and inserts the node into the container. If
+     * @c value already exists in the container, no insertion takes place.
      *
      * @tparam  Args    The types of the arguments.
      * @param   args    The arguments to forward to the object's constructor.
+     * @return          @c true if the insertion was successful; @c false
+     *                  otherwise.
      */
     template<typename... Args>
-    void emplace(Args&&... args) {
-        Node<T>* node = createNode(std::forward<Args>(args)...);
+    bool emplace(Args&&... args) {
+        Node* node = createNode(std::forward<Args>(args)...);
 
-        // TODO: Check for duplicates.
         if (empty()) {
             root = node;
         } else {
-            *getPos(root, node->value()) = node;
+            Node** pos = getPos(root, node->value());
+
+            if (!pos) { // nullptr means value is a duplicate.
+                return false;
+            }
+
+            *pos = node;
         }
+
+        return true;
     }
 
     /**
@@ -102,7 +118,7 @@ public:
     }
 
 protected:
-    Node<T>* root;
+    Node* root;
 
 private:
     /**
@@ -114,8 +130,8 @@ private:
      * @return          The constructed @c Node.
      */
     template<typename... Args>
-    Node<T>* createNode(Args&&... args) {
-        return new Node<T>(T(std::forward<Args>(args)...));
+    Node* createNode(Args&&... args) {
+        return new Node(T(std::forward<Args>(args)...));
     }
 
     /**
@@ -129,21 +145,24 @@ private:
      *
      * @param   parent  The @c Node at which to begin the search.
      * @param   value   The value of the @c Node to be inserted.
-     * @return          A pointer to an empty child @c Node pointer.
+     * @return          A pointer to an empty child @c Node pointer or @c
+     *                  nullptr if @c value already exists in the container.
      */
-    Node<T>** getPos(Node<T>* parent, const T* value) {
+    Node** getPos(Node* parent, const T* value) {
         if (*parent->value() > *value) { // Goes left.
             if (parent->left) { // Left node exists.
                 return getPos(parent->left, value);
             } else { // Left node doesn't exist.
                 return std::addressof(parent->left);
             }
-        } else { // Goes right.
+        } else if (*parent->value() < *value) { // Goes right.
             if (parent->right) { // Right node exists.
                 return getPos(parent->right, value);
             } else { // Right node doesn't exist.
                 return std::addressof(parent->right);
             }
+        } else { // Value is equal to the parent's value; no duplicates allowed.
+            return nullptr;
         }
     }
 };
