@@ -7,6 +7,14 @@
 struct Person {
     std::string name;
     unsigned long bribe;
+
+    bool operator<(const Person& rhs) const {
+       return bribe < rhs.bribe;
+    }
+
+    bool operator>(const Person& rhs) const {
+        return rhs < *this;
+    }
 };
 
 template<typename T>
@@ -118,7 +126,7 @@ public:
     }
 
 protected:
-    Node<T>* root;
+    Node<T>* root = nullptr;
 
 private:
     /**

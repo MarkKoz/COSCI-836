@@ -29,18 +29,21 @@ enum Selection {
 Selection menu();
 
 int main() {
-    // Tree tree;
+    Tree<Person> tree;
     Selection selection;
 
     do {
         selection = menu();
 
         switch (selection) {
-            case Selection::ADD:
-                // tree.add();
+            case Selection::ADD: {
+                // tree.insert();
+
                 break;
+            }
             case Selection::SHOW:
                 // tree.show();
+
                 break;
             default:
                 break;
