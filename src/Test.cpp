@@ -37,7 +37,16 @@ int main() {
 
         switch (selection) {
             case Selection::ADD: {
-                // tree.insert();
+                std::string name, contribution;
+
+                std::cout << "Enter the person's name: ";
+                std::getline(std::cin, name);
+
+                std::cout << "Enter the person's contribution: ";
+                std::getline(std::cin, contribution);
+
+                bool success = tree.insert({name, std::stoul(contribution)});
+                success ? std::cout << "Success!\n" : std::cout << "Failure!\n";
 
                 break;
             }
