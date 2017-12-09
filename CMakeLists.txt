@@ -4,6 +4,7 @@ project(Assignment_5)
 include_directories(include
                     src)
 set(SOURCE_FILES
+    include/Tree.hpp
     src/Test.cpp)
 add_executable(Assignment_5 ${SOURCE_FILES})
 
