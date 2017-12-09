@@ -32,7 +32,7 @@ template<typename T>
 class Tree {
 public:
     using iterator = TreeIterator<T>;
-    //using const_iterator = TreeIteratorConst<T>;
+    using const_iterator = TreeIteratorConst<T>;
 
     /**
      * @brief Destructor.
@@ -102,12 +102,28 @@ public:
         return root == nullptr;
     }
 
-    iterator begin() const {
+    iterator begin() {
         return iterator(root->getLeftmost());
     }
 
-    iterator end() const {
+    iterator end() {
         return iterator(nullptr);
+    }
+
+    const_iterator begin() const {
+        return const_iterator(root->getLeftmost());
+    }
+
+    const_iterator end() const {
+        return const_iterator(nullptr);
+    }
+
+    const_iterator cbegin() const {
+        return const_iterator(root->getLeftmost());
+    }
+
+    const_iterator cend() const {
+        return const_iterator(nullptr);
     }
 
 protected:
