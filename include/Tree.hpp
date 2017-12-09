@@ -1,8 +1,10 @@
 #ifndef ASSIGNMENT_5_TREE_HPP
 #define ASSIGNMENT_5_TREE_HPP
 
-#include <memory>
 #include <utility>
+
+#include "Node.hpp"
+#include "TreeIterator.hpp"
 
 struct Person {
     std::string name;
@@ -17,34 +19,6 @@ struct Person {
     }
 };
 
-template<typename T>
-class Node {
-public:
-    Node<T>* left = nullptr;
-    Node<T>* right = nullptr;
-    bool threaded = false;
-
-    explicit Node(const T& value) : data(value) { }
-
-    explicit Node(T&& value) : data(std::move(value)) { }
-
-    T* value() {
-        return std::addressof(data);
-    }
-
-    const T* value() const {
-        return std::addressof(data);
-    }
-
-    void setThread(Node<T>* thread) {
-        left = thread;
-        threaded = true;
-    }
-
-private:
-    T data;
-};
-
 /**
  * @brief A binary search tree container.
  *
@@ -57,6 +31,9 @@ private:
 template<typename T>
 class Tree {
 public:
+    using iterator = TreeIterator<T>;
+    //using const_iterator = TreeIteratorConst<T>;
+
     /**
      * @brief Destructor.
      *
@@ -121,8 +98,16 @@ public:
      *
      * @return          @c true if empty; @c false otherwise.
      */
-    bool empty() {
+    bool empty() const {
         return root == nullptr;
+    }
+
+    iterator begin() const {
+        return iterator(root->getLeftmost());
+    }
+
+    iterator end() const {
+        return iterator(nullptr);
     }
 
 protected:

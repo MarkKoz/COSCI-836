@@ -45,15 +45,25 @@ int main() {
                 std::cout << "Enter the person's contribution: ";
                 std::getline(std::cin, contribution);
 
-                bool success = tree.insert({name, std::stoul(contribution)});
-                success ? std::cout << "Success!\n" : std::cout << "Failure!\n";
+                if (!tree.insert({name, std::stoul(contribution)})) {
+                    std::cout << "A contribution of this amount has already "
+                                 "been given; " << name << " was not added to "
+                                 "the list.\n";
+                }
 
                 break;
             }
-            case Selection::SHOW:
-                // tree.show();
+            case Selection::SHOW: {
+                std::cout << "# Name Contribution\n";
+                unsigned int i = 1;
+
+                for (const Person& p : tree) {
+                    std::cout << i << " " << p.name << " $" << p.bribe << '\n';
+                    ++i;
+                }
 
                 break;
+            }
             default:
                 break;
         }
