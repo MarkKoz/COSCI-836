@@ -12,8 +12,8 @@ struct Person {
 template<typename T>
 class Node {
 public:
-    Node* left = nullptr;
-    Node* right = nullptr;
+    Node<T>* left = nullptr;
+    Node<T>* right = nullptr;
 
     explicit Node(const T& value) : data(value) { }
 
@@ -91,12 +91,12 @@ public:
      */
     template<typename... Args>
     bool emplace(Args&&... args) {
-        Node* node = createNode(std::forward<Args>(args)...);
+        Node<T>* node = createNode(std::forward<Args>(args)...);
 
         if (empty()) {
             root = node;
         } else {
-            Node** pos = getPos(root, node->value());
+            Node<T>** pos = getPos(root, node->value());
 
             if (!pos) { // nullptr means value is a duplicate.
                 return false;
@@ -118,7 +118,7 @@ public:
     }
 
 protected:
-    Node* root;
+    Node<T>* root;
 
 private:
     /**
@@ -130,8 +130,8 @@ private:
      * @return          The constructed @c Node.
      */
     template<typename... Args>
-    Node* createNode(Args&&... args) {
-        return new Node(T(std::forward<Args>(args)...));
+    Node<T>* createNode(Args&&... args) {
+        return new Node<T>(T(std::forward<Args>(args)...));
     }
 
     /**
@@ -148,7 +148,7 @@ private:
      * @return          A pointer to an empty child @c Node pointer or @c
      *                  nullptr if @c value already exists in the container.
      */
-    Node** getPos(Node* parent, const T* value) {
+    Node<T>** getPos(Node<T>* parent, const T* value) {
         if (*parent->value() > *value) { // Goes left.
             if (parent->left) { // Left node exists.
                 return getPos(parent->left, value);
