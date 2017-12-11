@@ -46,13 +46,13 @@ public:
      * @return          Reference to the iterator after incrementation.
      */
     TreeIterator<T>& operator++() {
-        if (node->threaded) {
+        if (node->isThreaded()) {
             // The in-order successor is whatever is in the thread.
             node = node->thread.lock().get();
-        } else if (node->right) {
+        } else if (node->getRight()) {
             // The right node exists. The in-order successor is the left-most
             // node of the right child.
-            node = node->right->getLeftmost();
+            node = node->getRight()->getLeftmost();
         } else {
             // The current node is not threaded and its right child doesn't
             // exist. Therefore, the current node must be the last node in
@@ -170,13 +170,13 @@ public:
      * @return          Reference to the iterator after incrementation.
      */
     TreeIteratorConst<T>& operator++() {
-        if (node->threaded) {
+        if (node->isThreaded()) {
             // The in-order successor is whatever is in the thread.
             node = node->thread.lock().get();
-        } else if (node->right) {
+        } else if (node->getRight()) {
             // The right node exists. The in-order successor is the left-most
             // node of the right child.
-            node = node->right->getLeftmost();
+            node = node->getRight()->getLeftmost();
         } else {
             // The current node is not threaded and its right child doesn't
             // exist. Therefore, the current node must be the last node in

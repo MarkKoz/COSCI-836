@@ -136,43 +136,29 @@ private:
      * @return          @c true if the insertion was successful; @c false
      *                  otherwise.
      */
-    bool insertNode(std::shared_ptr<Node<T>>& parent,
+    bool insertNode(const std::shared_ptr<Node<T>>& parent,
                     std::unique_ptr<Node<T>>& node) {
         if (*parent->value() > *node->value()) { // Smaller values to the left.
-            if (parent->left) {
+            if (parent->getLeft()) {
                 // The left node exists; start the search at the left node.
-                return insertNode(parent->left, node);
+                return insertNode(parent->getLeft(), node);
             } else {
                 // The left node doesn't exist; found the free position.
                 // A left node's in-order successor is its parent.
-                // parent's shared_ptr is shared with thread's weak_ptr; no
-                // transfer of ownership occurs.
-                node->thread = parent;
-                node->threaded = true;
-
-                // Inserts the node. Transfers ownership from unique_ptr (node)
-                // to the shared_ptr (left). The unique_ptr manages no object
-                // afterwards.
-                parent->left = std::move(node);
+                node->setThread(parent);
+                parent->setLeft(std::move(node)); // Inserts the node.
 
                 return true;
             }
         } else if (*parent->value() < *node->value()) { // Larger go right.
-            if (parent->right) {
+            if (parent->getRight()) {
                 // The right node exists; start the search at the right node.
-                return insertNode(parent->right, node);
+                return insertNode(parent->getRight(), node);
             } else {
                 // The right node doesn't exist; found the free position.
                 // A right node's in-order successor is its parent's thread.
-                // Both threads are weak_ptrs; no transfer of ownership occurs.
-                node->thread = parent->thread;
-                node->threaded = true;
-
-                // Inserts the node. Transfers ownership from unique_ptr (node)
-                // to the shared_ptr (right). The unique_ptr manages no object
-                // afterwards.
-                parent->right = std::move(node);
-                parent->threaded = false; // Parent isn't threaded anymore.
+                node->setThread(std::move(parent->thread));
+                parent->setRight(std::move(node)); // Inserts the node.
 
                 return true;
             }
