@@ -7,8 +7,6 @@
 template<typename T>
 class Node {
 public:
-    std::weak_ptr<Node<T>> thread = std::weak_ptr<Node<T>>();
-
     /**
      * Constructs a @c Node which stores a copy of the given @c value.
      *
@@ -106,13 +104,24 @@ public:
     }
 
     /**
+     * Retrieves a const-qualified l-value references to the @c thread pointer
+     * of the @c Node.
+     *
+     * @return          The thread.
+     */
+    const std::weak_ptr<Node<T>> getThread() const {
+        return thread;
+    }
+
+    /**
      * Sets the @c thread pointer of the @c Node.
      *
-     * After this, the @c node pointer becomes empty and it's use count is 0.
+     * This effectively swaps the managed objects of the @c thread pointer and
+     * @c node pointer.
      *
      * @param   node    The @c Node to be set as the thread.
      */
-    void setThread(std::weak_ptr<Node<T>>&& node) {
+    void setThread(const std::weak_ptr<Node<T>>& node) {
         this->thread = node;
         threaded = true;
     }
@@ -143,6 +152,7 @@ private:
     T data;
     std::shared_ptr<Node<T>> left = nullptr;
     std::shared_ptr<Node<T>> right = nullptr;
+    std::weak_ptr<Node<T>> thread = std::weak_ptr<Node<T>>();
     bool threaded = false;
 };
 

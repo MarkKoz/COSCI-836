@@ -3,7 +3,6 @@
 
 #include <cstddef>
 #include <iterator>
-#include <memory>
 
 #include "Node.hpp"
 
@@ -48,13 +47,13 @@ public:
     TreeIterator<T>& operator++() {
         if (node->isThreaded()) {
             // The in-order successor is whatever is in the thread.
-            node = node->thread.lock().get();
+            node = node->getThread().lock().get();
         } else if (node->getLeft()) {
-            // The right node exists. The in-order successor is the left-most
-            // node of the right child.
+            // The left node exists. The in-order successor is the right-most
+            // node of the left child.
             node = node->getLeft()->getRightmost();
         } else {
-            // The current node is not threaded and its right child doesn't
+            // The current node is not threaded and its left child doesn't
             // exist. Therefore, the current node must be the last node in
             // the tree.
             node = nullptr;
@@ -174,11 +173,11 @@ public:
             // The in-order successor is whatever is in the thread.
             node = node->thread.lock().get();
         } else if (node->getLeft()) {
-            // The right node exists. The in-order successor is the left-most
-            // node of the right child.
+            // The left node exists. The in-order successor is the right-most
+            // node of the left child.
             node = node->getLeft()->getRightmost();
         } else {
-            // The current node is not threaded and its right child doesn't
+            // The current node is not threaded and its left child doesn't
             // exist. Therefore, the current node must be the last node in
             // the tree.
             node = nullptr;

@@ -187,7 +187,7 @@ private:
             } else {
                 // The left node doesn't exist; found the free position.
                 // A left node's in-order successor is its parent's thread.
-                node->setThread(std::move(parent->thread));
+                node->setThread(parent->getThread());
                 parent->setLeft(std::move(node)); // Inserts the node.
 
                 return true;
