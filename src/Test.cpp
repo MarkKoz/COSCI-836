@@ -88,7 +88,7 @@ Selection menu() {
         try {
             const int i = std::stoi(selection);
 
-            if (i < 1 || i > 4) {
+            if (i < 1 || i > 3) {
                 throw std::invalid_argument("The selection is out of the valid "
                                             "range [1,3].");
             }

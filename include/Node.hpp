@@ -7,8 +7,9 @@
 template<typename T>
 class Node {
 public:
-    Node<T>* left = nullptr;
-    Node<T>* right = nullptr;
+    std::shared_ptr<Node<T>> left = nullptr;
+    std::shared_ptr<Node<T>> right = nullptr;
+    std::weak_ptr<Node<T>> thread = std::weak_ptr<Node<T>>();
     bool threaded = false;
 
     explicit Node(const T& value) : data(value) { }
@@ -16,23 +17,18 @@ public:
     explicit Node(T&& value) : data(std::move(value)) { }
 
     T* value() {
-        return std::addressof(data);
+        return &data;
     }
 
     const T* value() const {
-        return std::addressof(data);
-    }
-
-    void setThread(Node<T>* thread) {
-        right = thread;
-        threaded = true;
+        return &data;
     }
 
     Node<T>* getLeftmost() {
         Node<T>* node = this;
 
-        while (node->left != nullptr) {
-            node = node->left;
+        while (node->left) {
+            node = node->left.get();
         }
 
         return node;
