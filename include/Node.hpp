@@ -24,15 +24,15 @@ public:
     explicit Node(T&& value) : data(std::move(value)) { }
 
     /**
-     * Finds the left-most child @c Node of the @c Node.
+     * Finds the right-most child @c Node of the @c Node.
      *
-     * @return          A pointer to the left-most child @c Node.
+     * @return          A pointer to the right-most child @c Node.
      */
-    Node<T>* getLeftmost() {
+    Node<T>* getRightmost() {
         Node<T>* node = this;
 
-        while (node->left) {
-            node = node->left.get();
+        while (node->right) {
+            node = node->right.get();
         }
 
         return node;
@@ -68,7 +68,8 @@ public:
     }
 
     /**
-     * Sets the given @c child to be the left child of the @c Node.
+     * Sets the given @c child to be the left child of the @c Node and un-flags
+     * the @c Node as being threaded.
      *
      * This transfers ownership of the child to the @c Node; the original child
      * pointer will no longer have ownership of the child @c Node or manage
@@ -78,6 +79,7 @@ public:
      */
     void setLeft(std::unique_ptr<Node<T>>&& child) {
         left = std::move(child);
+        threaded = false;
     }
 
     /**
@@ -91,8 +93,7 @@ public:
     }
 
     /**
-     * Sets the given @c child to be the right child of the @c Node and
-     * un-flags the @c Node as being threaded.
+     * Sets the given @c child to be the right child of the @c Node.
      *
      * This transfers ownership of the child to the @c Node; the original child
      * pointer will no longer have ownership of the child @c Node or manage
@@ -102,7 +103,6 @@ public:
      */
     void setRight(std::unique_ptr<Node<T>>&& child) {
         right = std::move(child);
-        threaded = false;
     }
 
     /**

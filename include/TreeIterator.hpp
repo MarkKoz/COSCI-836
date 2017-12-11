@@ -12,8 +12,8 @@ template <typename T>
 class TreeIteratorConst;
 
 /**
- * An implementation of a ForwardIterator for a @c Tree. Allows for in-order
- * traversal of a @c Tree and reading of iterated elements.
+ * An implementation of a ForwardIterator for a @c Tree. Allows for descending
+ * in-order traversal of a @c Tree and reading of iterated elements.
  *
  * @tparam  T       The type of the elements to iterated.
  */
@@ -49,10 +49,10 @@ public:
         if (node->isThreaded()) {
             // The in-order successor is whatever is in the thread.
             node = node->thread.lock().get();
-        } else if (node->getRight()) {
+        } else if (node->getLeft()) {
             // The right node exists. The in-order successor is the left-most
             // node of the right child.
-            node = node->getRight()->getLeftmost();
+            node = node->getLeft()->getRightmost();
         } else {
             // The current node is not threaded and its right child doesn't
             // exist. Therefore, the current node must be the last node in
@@ -130,8 +130,8 @@ private:
 };
 
 /**
- * An implementation of a constant ForwardIterator for a @c Tree. Allows for
- * in-order traversal of a @c Tree and reading of iterated elements.
+ * An implementation of a const ForwardIterator for a @c Tree. Allows for
+ * descending in-order traversal of a @c Tree and reading of iterated elements.
  *
  * @tparam  T       The type of the elements to iterated.
  */
@@ -173,10 +173,10 @@ public:
         if (node->isThreaded()) {
             // The in-order successor is whatever is in the thread.
             node = node->thread.lock().get();
-        } else if (node->getRight()) {
+        } else if (node->getLeft()) {
             // The right node exists. The in-order successor is the left-most
             // node of the right child.
-            node = node->getRight()->getLeftmost();
+            node = node->getLeft()->getRightmost();
         } else {
             // The current node is not threaded and its right child doesn't
             // exist. Therefore, the current node must be the last node in

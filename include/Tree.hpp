@@ -1,6 +1,7 @@
 #ifndef ASSIGNMENT_5_TREE_HPP
 #define ASSIGNMENT_5_TREE_HPP
 
+#include <memory>
 #include <utility>
 
 #include "Node.hpp"
@@ -92,7 +93,7 @@ public:
             return end();
         }
 
-        return iterator(root->getLeftmost());
+        return iterator(root->getRightmost());
     }
 
     /**
@@ -118,7 +119,7 @@ public:
             return end();
         }
 
-        return const_iterator(root->getLeftmost());
+        return const_iterator(root->getRightmost());
     }
 
     /**
@@ -144,7 +145,7 @@ public:
             return cend();
         }
 
-        return const_iterator(root->getLeftmost());
+        return const_iterator(root->getRightmost());
     }
 
     /**
@@ -185,8 +186,8 @@ private:
                 return insertNode(parent->getLeft(), node);
             } else {
                 // The left node doesn't exist; found the free position.
-                // A left node's in-order successor is its parent.
-                node->setThread(parent);
+                // A left node's in-order successor is its parent's thread.
+                node->setThread(std::move(parent->thread));
                 parent->setLeft(std::move(node)); // Inserts the node.
 
                 return true;
@@ -197,8 +198,8 @@ private:
                 return insertNode(parent->getRight(), node);
             } else {
                 // The right node doesn't exist; found the free position.
-                // A right node's in-order successor is its parent's thread.
-                node->setThread(std::move(parent->thread));
+                // A right node's in-order successor is its parent.
+                node->setThread(parent);
                 parent->setRight(std::move(node)); // Inserts the node.
 
                 return true;
