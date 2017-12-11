@@ -7,9 +7,16 @@
 
 #include "Node.hpp"
 
+// Forward declaration for friendship.
 template <typename T>
 class TreeIteratorConst;
 
+/**
+ * An implementation of a ForwardIterator for a @c Tree. Allows for in-order
+ * traversal of a @c Tree and reading of iterated elements.
+ *
+ * @tparam  T       The type of the elements to iterated.
+ */
 template <typename T>
 class TreeIterator : public std::iterator<std::forward_iterator_tag,
                                           T,
@@ -19,10 +26,25 @@ class TreeIterator : public std::iterator<std::forward_iterator_tag,
     friend class TreeIteratorConst<T>;
 
 public:
+    /**
+     * @brief Default constructor.
+     */
     TreeIterator() : node() { }
 
+    /**
+     * Constructs an iterator at the given position @c n.
+     *
+     * @param   n       A pointer to a @c Node in the container.
+     */
     explicit TreeIterator(Node<T>* n) : node(n) { }
 
+    /**
+     * @brief Unary prefix increment operator.
+     *
+     * Advances to the next in-order node.
+     *
+     * @return          Reference to the iterator after incrementation.
+     */
     TreeIterator<T>& operator++() {
         if (node->threaded) {
             // The in-order successor is whatever is in the thread.
@@ -41,6 +63,15 @@ public:
         return *this;
     }
 
+    /**
+     * @brief Unary postfix increment operator.
+     *
+     * Advances to the next in-order @c Node and returns a reference to a copy
+     * of the iterator made @a before incrementation.
+     *
+     * @return          A reference to the iterator @a before
+     *                  incrementation.
+     */
     TreeIterator<T>& operator++(int) {
         TreeIterator<T> it(*this);
         operator++();
@@ -48,18 +79,48 @@ public:
         return it;
     }
 
+    /**
+     * @brief Unary prefix indirection operator.
+     *
+     * Retrieves a reference to the value stored in the @c Node.
+     *
+     * @return          A reference to the value stored in the @c Node.
+     */
     T& operator*() const {
         return *node->value();
     }
 
+    /**
+     * @brief Binary infix member of pointer access operator.
+     *
+     * Retrieves the pointer to the value stored in the @c Node.
+     *
+     * @return          A pointer to the value stored in the @c Node.
+     */
     T* operator->() const {
         return node->value();
     }
 
+    /**
+     * @brief Binary infix equality comparison operator.
+     *
+     * Performs a comparison to determine if the two elements are equal.
+     *
+     * @param   rhs     The element to compare against.
+     * @return          @c true if equal; @c false otherwise.
+     */
     bool operator==(const TreeIterator<T>& rhs) const {
         return node == rhs.node;
     }
 
+    /**
+     * @brief Binary infix inequality comparison operator.
+     *
+     * Performs a comparison to determine if the two elements are unequal.
+     *
+     * @param   rhs     The element to compare against.
+     * @return          @c true if unequal; @c false otherwise.
+     */
     bool operator!=(const TreeIterator<T>& rhs) const {
         return !operator==(rhs);
     }
@@ -68,6 +129,12 @@ private:
     Node<T>* node;
 };
 
+/**
+ * An implementation of a constant ForwardIterator for a @c Tree. Allows for
+ * in-order traversal of a @c Tree and reading of iterated elements.
+ *
+ * @tparam  T       The type of the elements to iterated.
+ */
 template <typename T>
 class TreeIteratorConst : public std::iterator<std::forward_iterator_tag,
                                           T,
@@ -75,13 +142,33 @@ class TreeIteratorConst : public std::iterator<std::forward_iterator_tag,
                                           T*,
                                           T&> {
 public:
+    /**
+     * @brief Default constructor.
+     */
     TreeIteratorConst() : node() { }
 
+    /**
+     * Constructs a constant iterator from a const-qualified @c TreeIterator.
+     *
+     * @param   iter    The @c TreeIterator from which to construct.
+     */
     explicit TreeIteratorConst(const TreeIterator<T>& iter)
             : node(iter.node) { }
 
+    /**
+     * Constructs an iterator at the given position @c n.
+     *
+     * @param   n       A pointer to a @c Node in the container.
+     */
     explicit TreeIteratorConst(const Node<T>* n) : node(n) { }
 
+    /**
+     * @brief Unary prefix increment operator.
+     *
+     * Advances to the next in-order node.
+     *
+     * @return          Reference to the iterator after incrementation.
+     */
     TreeIteratorConst<T>& operator++() {
         if (node->threaded) {
             // The in-order successor is whatever is in the thread.
@@ -100,6 +187,15 @@ public:
         return *this;
     }
 
+    /**
+     * @brief Unary postfix increment operator.
+     *
+     * Advances to the next in-order @c Node and returns a reference to a copy
+     * of the iterator made @a before incrementation.
+     *
+     * @return          A reference to the iterator @a before
+     *                  incrementation.
+     */
     TreeIteratorConst<T>& operator++(int) {
         TreeIteratorConst<T> it(*this);
         operator++();
@@ -107,18 +203,48 @@ public:
         return it;
     }
 
+    /**
+     * @brief Unary prefix indirection operator.
+     *
+     * Retrieves a reference to the value stored in the @c Node.
+     *
+     * @return          A reference to the value stored in the @c Node.
+     */
     const T& operator*() const {
         return *node->value();
     }
 
+    /**
+     * @brief Binary infix member of pointer access operator.
+     *
+     * Retrieves the pointer to the value stored in the @c Node.
+     *
+     * @return          A pointer to the value stored in the @c Node.
+     */
     const T* operator->() const {
         return node->value();
     }
+    /**
+     * @brief Binary infix equality comparison operator.
+     *
+     * Performs a comparison to determine if the two elements are equal.
+     *
+     * @param   rhs     The element to compare against.
+     * @return          @c true if equal; @c false otherwise.
+     */
 
     bool operator==(const TreeIteratorConst<T>& rhs) const {
         return node == rhs.node;
     }
 
+    /**
+     * @brief Binary infix inequality comparison operator.
+     *
+     * Performs a comparison to determine if the two elements are unequal.
+     *
+     * @param   rhs     The element to compare against.
+     * @return          @c true if unequal; @c false otherwise.
+     */
     bool operator!=(const TreeIteratorConst<T>& rhs) const {
         return !operator==(rhs);
     }
