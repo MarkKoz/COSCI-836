@@ -6,6 +6,40 @@
 #include "Tree.hpp"
 
 /**
+ * Represents a person on the waiting list.
+ */
+struct Person {
+    std::string name;
+    unsigned long bribe; // Contribution.
+
+    /**
+     * @brief Binary infix less than operator.
+     *
+     * Compares the @c bribes of the @c Person and the right operand.
+     *
+     * @param   rhs     The right operand.
+     * @return          @c true if the @c Person's @c bribe is less than the
+     *                  right operand's; @c false otherwise.
+     */
+    bool operator<(const Person& rhs) const {
+        return bribe < rhs.bribe;
+    }
+
+    /**
+     * @brief Binary infix greater than operator.
+     *
+     * Compares the bribes of the @c Person and the right operand.
+     *
+     * @param   rhs     The right operand.
+     * @return          @c true if the @c Person's @c bribe is greater than the
+     *                  right operand's; @c false otherwise.
+     */
+    bool operator>(const Person& rhs) const {
+        return rhs < *this;
+    }
+};
+
+/**
  * Represents a menu selection.
  */
 enum Selection {

@@ -6,19 +6,6 @@
 #include "Node.hpp"
 #include "TreeIterator.hpp"
 
-struct Person {
-    std::string name;
-    unsigned long bribe;
-
-    bool operator<(const Person& rhs) const {
-       return bribe < rhs.bribe;
-    }
-
-    bool operator>(const Person& rhs) const {
-        return rhs < *this;
-    }
-};
-
 /**
  * @brief A threaded binary search tree container.
  *
@@ -92,26 +79,80 @@ public:
         return !root;
     }
 
+    /**
+     * Returns an iterator to the first element of the container.
+     *
+     * If the container is empty, the returned iterator will be equal to @c
+     * end().
+     *
+     * @return          An iterator to the first element.
+     */
     iterator begin() {
+        if (empty()) {
+            return end();
+        }
+
         return iterator(root->getLeftmost());
     }
 
+    /**
+     * Returns an iterator to the element following the last element of the
+     * container (past-the-last).
+     *
+     * @return          An iterator to the past-the-last element.
+     */
     iterator end() {
         return iterator(nullptr);
     }
 
+    /**
+     * Returns a const iterator to the first element of the container.
+     *
+     * If the container is empty, the returned iterator will be equal to @c
+     * end().
+     *
+     * @return          A const-qualified iterator to the first element.
+     */
     const_iterator begin() const {
+        if (empty()) {
+            return end();
+        }
+
         return const_iterator(root->getLeftmost());
     }
 
+    /**
+     * Returns a const iterator to the element following the last
+     * element of the container (past-the-last).
+     *
+     * @return          A const iterator to the past-the-last element.
+     */
     const_iterator end() const {
         return const_iterator(nullptr);
     }
 
+    /**
+     * Returns a const iterator to the first element of the container.
+     *
+     * If the container is empty, the returned iterator will be equal to @c
+     * cend().
+     *
+     * @return          A const-qualified iterator to the first element.
+     */
     const_iterator cbegin() const {
+        if (empty()) {
+            return cend();
+        }
+
         return const_iterator(root->getLeftmost());
     }
 
+    /**
+     * Returns a const iterator to the element following the last
+     * element of the container (past-the-last).
+     *
+     * @return          A const iterator to the past-the-last element.
+     */
     const_iterator cend() const {
         return const_iterator(nullptr);
     }
