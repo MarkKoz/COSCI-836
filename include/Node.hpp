@@ -4,6 +4,13 @@
 #include <memory>
 #include <utility>
 
+/**
+ * @brief A node of a @c Tree.
+ *
+ * Supports threading for descending in-orde traversal of a @c Tree.
+ *
+ * @tparam  T   The type of the elements the @c Tree contains.
+ */
 template<typename T>
 class Node {
 public:
