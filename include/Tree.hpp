@@ -2,7 +2,6 @@
 #define ASSIGNMENT_5_TREE_HPP
 
 #include <memory>
-#include <utility>
 
 #include "Node.hpp"
 #include "TreeIterator.hpp"
@@ -31,9 +30,7 @@ public:
      * @return          @c true if the insertion was successful; @c false
      *                  otherwise.
      */
-    bool insert(const T& value) {
-        return emplace(value);
-    }
+    bool insert(const T& value);
 
     /**
      * Moves @c value into a new @c Node and inserts the node into the
@@ -44,9 +41,7 @@ public:
      * @return          @c true if the insertion was successful; @c false
      *                  otherwise.
      */
-    bool insert(T&& value) {
-        return emplace(std::move(value));
-    }
+    bool insert(T&& value);
 
     /**
      * Constructs an object using the arguments @c args, constructs a new
@@ -59,26 +54,14 @@ public:
      *                  otherwise.
      */
     template<typename... Args>
-    bool emplace(Args&& ... args) {
-        auto node = std::make_unique<Node<T>>(T(std::forward<Args>(args)...));
-
-        if (empty()) {
-            root = std::move(node);
-
-            return true;
-        } else {
-            return insertNode(root, node);
-        }
-    }
+    bool emplace(Args&& ... args);
 
     /**
      * Checks if the container is empty i.e. contains no nodes.
      *
      * @return          @c true if empty; @c false otherwise.
      */
-    bool empty() const {
-        return !root;
-    }
+    bool empty() const;
 
     /**
      * Returns an iterator to the first element of the container.
@@ -88,13 +71,7 @@ public:
      *
      * @return          An iterator to the first element.
      */
-    iterator begin() {
-        if (empty()) {
-            return end();
-        }
-
-        return iterator(root->getRightmost());
-    }
+    iterator begin();
 
     /**
      * Returns an iterator to the element following the last element of the
@@ -102,9 +79,7 @@ public:
      *
      * @return          An iterator to the past-the-last element.
      */
-    iterator end() {
-        return iterator(nullptr);
-    }
+    iterator end();
 
     /**
      * Returns a const iterator to the first element of the container.
@@ -114,13 +89,7 @@ public:
      *
      * @return          A const-qualified iterator to the first element.
      */
-    const_iterator begin() const {
-        if (empty()) {
-            return end();
-        }
-
-        return const_iterator(root->getRightmost());
-    }
+    const_iterator begin() const;
 
     /**
      * Returns a const iterator to the element following the last
@@ -128,9 +97,7 @@ public:
      *
      * @return          A const iterator to the past-the-last element.
      */
-    const_iterator end() const {
-        return const_iterator(nullptr);
-    }
+    const_iterator end() const;
 
     /**
      * Returns a const iterator to the first element of the container.
@@ -140,13 +107,7 @@ public:
      *
      * @return          A const-qualified iterator to the first element.
      */
-    const_iterator cbegin() const {
-        if (empty()) {
-            return cend();
-        }
-
-        return const_iterator(root->getRightmost());
-    }
+    const_iterator cbegin() const;
 
     /**
      * Returns a const iterator to the element following the last
@@ -154,9 +115,7 @@ public:
      *
      * @return          A const iterator to the past-the-last element.
      */
-    const_iterator cend() const {
-        return const_iterator(nullptr);
-    }
+    const_iterator cend() const;
 
 protected:
     std::shared_ptr<Node<T>> root = nullptr;
@@ -179,35 +138,9 @@ private:
      *                  otherwise.
      */
     bool insertNode(const std::shared_ptr<Node<T>>& parent,
-                    std::unique_ptr<Node<T>>& node) {
-        if (*parent->value() > *node->value()) { // Smaller values to the left.
-            if (parent->getLeft()) {
-                // The left node exists; start the search at the left node.
-                return insertNode(parent->getLeft(), node);
-            } else {
-                // The left node doesn't exist; found the free position.
-                // A left node's in-order successor is its parent's thread.
-                node->setThread(parent->getThread());
-                parent->setLeft(std::move(node)); // Inserts the node.
-
-                return true;
-            }
-        } else if (*parent->value() < *node->value()) { // Larger go right.
-            if (parent->getRight()) {
-                // The right node exists; start the search at the right node.
-                return insertNode(parent->getRight(), node);
-            } else {
-                // The right node doesn't exist; found the free position.
-                // A right node's in-order successor is its parent.
-                node->setThread(parent);
-                parent->setRight(std::move(node)); // Inserts the node.
-
-                return true;
-            }
-        } else { // Value is equal to the parent's value; no duplicates allowed.
-            return false;
-        }
-    }
+                    std::unique_ptr<Node<T>>& node);
 };
+
+#include "Tree.cpp"
 
 #endif
